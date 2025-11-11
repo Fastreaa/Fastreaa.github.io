@@ -1,0 +1,134 @@
+/* 1. Reset Básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente */
+    line-height: 1.6;
+    color: #333; /* Color de texto principal */
+    background-color: #f4f4f4; /* Fondo claro */
+}
+
+/* 2. Encabezado y Navegación */
+.header {
+    background: #fff;
+    color: #333;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-menu ul li a {
+    color: #555;
+    text-decoration: none;
+    padding: 0 15px;
+    transition: color 0.3s;
+}
+
+.nav-menu ul li a:hover {
+    color: #007bff; /* Color de acento */
+}
+
+/* 3. Estilos de Sección General */
+.section {
+    padding: 40px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* 4. Estilos de la Cuadrícula de Proyectos */
+.proyectos-grid {
+    display: grid;
+    /* Crear columnas: 2 columnas en escritorios, 1 en móvil */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.proyecto-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.proyecto-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.proyecto-card h3 {
+    margin: 15px 0 10px;
+    color: #007bff;
+}
+
+.proyecto-card p {
+    padding: 0 15px 15px;
+    font-size: 0.9em;
+}
+
+.links a {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+}
+
+.links a:hover {
+    background-color: #0056b3;
+}
+
+/* 5. Pie de Página */
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #007bff;
+}
+
+/* 6. Media Query (para adaptabilidad en móviles) */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+    }
+    .nav-menu ul {
+        padding: 10px 0;
+    }
+    .nav-menu ul li a {
+        padding: 5px 10px;
+    }
+}
