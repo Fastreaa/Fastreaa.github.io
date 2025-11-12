@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio | Emiliano Aguilar - Ing. Cómputo y Telecomunicaciones</title>
+    <title>Emiliano Aguilar | Ing. Cómputo y Telecomunicaciones</title>
     
         <link rel="stylesheet" href="style.css">
     
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,28 +17,66 @@
         <h1 class="logo">Emiliano A.</h1>
         <nav class="nav-menu">
             <ul>
-                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#home">Inicio</a></li>
                 <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#herramientas">Herramientas</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#herramientas">Habilidades</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-                <section id="proyectos" class="section proyectos-grid">
-            <h2>Proyectos Destacados</h2>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <p class="greeting">Hola, soy</p>
+                <h1 class="name">Emiliano Aguilar</h1>
+                <p class="title">Estudiante de Ingeniería en Cómputo y Telecomunicaciones</p>
+                <div class="hero-actions">
+                    <a href="URL_DE_TU_CV.pdf" target="_blank" class="btn btn-primary">Descargar CV <i class="fas fa-download"></i></a>
+                    <a href="MAILTO:tu_email@ejemplo.com" class="btn btn-secondary">Contactar <i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/tu_foto.jpg" alt="Emiliano Aguilar">
+            </div>
+            <div class="hero-social-links">
+                <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.facebook.com/share/17n9pHAmy9/?mibextid=wwXIfr" target="_blank" title="Divulgación Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/emilianoagl?igsh=MTBuM2NqNDNuZHZiaA%3D%3D&utm_source=qr" target="_blank" title="Instagram Personal"><i class="fab fa-instagram"></i></a>
+            </div>
+        </section>
+
+        <section id="sobre-mi" class="section about-me">
+            <div class="section-header">
+                <h2>Sobre Mí</h2>
+                <p class="subtitle">Conóceme mejor</p>
+            </div>
+            <div class="about-content">
+                <p>Soy un **Estudiante de Ingeniería en Tecnologías de Cómputo y Telecomunicaciones** con una profunda pasión por la intersección entre el software, el hardware y la comunicación de datos. Mi objetivo es desarrollar soluciones tecnológicas innovadoras y eficientes que aborden los desafíos del mundo real.</p>
+                
+                <p>Además de mis estudios, me dedico activamente a la **divulgación de ciencia y tecnología** en redes sociales, donde he tenido el privilegio de construir y nutrir una comunidad de **más de 300K** seguidores. Creo firmemente en la importancia de compartir el conocimiento y fomentar el interés en STEM.</p>
+                
+                <p>Estoy siempre en busca de nuevas oportunidades para aprender y aplicar mis habilidades. Me entusiasma colaborar en **proyectos de Código Abierto (Open Source)**, donde puedo contribuir al desarrollo colectivo y explorar nuevas tecnologías en un entorno colaborativo.</p>
+            </div>
+        </section>
+
+                <section id="proyectos" class="section proyectos-grid">
+            <div class="section-header">
+                <h2>Proyectos Destacados</h2>
+                <p class="subtitle">Mis trabajos más relevantes</p>
+            </div>
             
-                        <div class="proyecto-card">
+            <div class="proyecto-card">
                 <img src="images/cms.jpeg" alt="Detector CMS del CERN"> 
                 <h3>Análisis de Datos: Reconstrucción de Muón (CMS)</h3>
-                <p>Reconstrucción de masa invariante de un muón utilizando base de datos del experimento CMS del CERN, aplicando la herramienta ROOT y Python para el procesamiento y visualización de resultados. (Tecnologías: Python, ROOT, Física).</p>
+                <p>Reconstrucción de una traza de muón utilizando datos simulados del experimento CMS del CERN, aplicando la herramienta ROOT y Python para el procesamiento y visualización de resultados. (Tecnologías: Python, ROOT, Física).</p>
                 <div class="links">
                     <a href="https://colab.research.google.com/drive/1OVwEsXx-r4NP-IgMIRVGNl2yb4NwHDlD?usp=sharing" target="_blank">Abrir Colab <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
 
-                        <div class="proyecto-card">
+            <div class="proyecto-card">
                 <img src="images/logogithub.jpg" alt="Logo de GitHub"> 
                 <h3>Portafolio Completo y Código Fuente</h3>
                 <p>Explora todos mis proyectos, repositorios y contribuciones, desde desarrollo web y bases de datos hasta scripts de automatización. Todo el código fuente está disponible en mi GitHub.</p>
@@ -49,17 +87,11 @@
             
         </section>
 
-                <section id="sobre-mi" class="section">
-            <h2>Sobre Mí</h2>
-            <h3>Emiliano Aguilar</h3>
-            <p>Soy un **Estudiante de Ingeniería en Tecnologías de Cómputo y Telecomunicaciones** apasionado por la intersección entre el software, el hardware y la comunicación de datos. Mi objetivo es aplicar soluciones tecnológicas innovadoras a problemas del mundo real.</p>
-            
-            <h3>Divulgación y Open Source</h3>
-            <p>También me dedico a la **divulgación de ciencia y tecnología** en redes sociales, donde he construido una comunidad de **más de 300K** seguidores. Creo firmemente en compartir conocimiento y contribuir al ecosistema tecnológico, por lo que tengo un gran interés en colaborar en **proyectos de Código Abierto (Open Source)**.</p>
-        </section>
-        
         <section id="herramientas" class="section">
-            <h2>Herramientas y Tecnologías</h2>
+            <div class="section-header">
+                <h2>Habilidades y Herramientas</h2>
+                <p class="subtitle">Tecnologías que manejo</p>
+            </div>
             <div class="herramientas-grid">
                 
                 <div class="tool-item"><i class="fab fa-linux"></i><span>Linux</span></div>
@@ -73,6 +105,8 @@
                 <div class="tool-item"><i class="fas fa-chart-bar"></i><span>ROOT CERN</span></div>
             </div>
         </section>
+
+    </main>
 
     <footer id="contacto" class="footer">
         <p>Conéctate conmigo:</p>
