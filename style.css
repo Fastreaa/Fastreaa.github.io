@@ -1,24 +1,18 @@
 /* ---------------------------------------------------- */
-/* 🎨 PALETA DE COLORES Y TIPOGRAFÍA MODERNA */
+/* 🎨 PALETA DE COLORES Y TIPOGRAFÍA MINIMALISTA */
 /* ---------------------------------------------------- */
 :root {
-    --color-principal: #0077B6; /* Azul Tecnológico (Tech Blue) */
-    --color-secundario: #48CAE4; /* Cyan Brillante (Acento Moderno) */
-    --color-fondo: #F8F9FA; /* Fondo muy claro */
-    --color-texto: #212529; /* Gris oscuro para legibilidad */
-    --color-acento-claro: #FFFFFF; /* Blanco puro */
-    --sombra-moderna: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra suave y flotante */
-    --sombra-fuerte: 0 8px 15px rgba(0, 0, 0, 0.25);
+    --color-principal: #0077B6; /* Azul para acentos clave (links, botones) */
+    --color-secundario: #333333; /* Texto principal oscuro */
+    --color-fondo: #F8F8F8; /* Fondo blanco suave */
+    --color-tarjeta: #FFFFFF; /* Fondo de tarjetas */
+    --color-linea: #CCCCCC; /* Líneas divisorias sutiles */
     
-    /* Fuentes: Usando fuentes modernas de Google Fonts. ¡Añade el link en tu HTML! */
-    --font-header: 'Montserrat', sans-serif;
-    --font-body: 'Roboto', sans-serif;
+    /* Tipografía Simple y legible */
+    --font-principal: 'Arial', sans-serif; 
 }
 
-/* RESET BÁSICO Y IMPORTACIÓN DE FUENTES (PONER ESTO AL INICIO DEL ARCHIVO) */
-/* Asegúrate de incluir el link de Google Fonts en tu <head> del HTML:
-   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-*/
+/* RESET BÁSICO */
 * {
     margin: 0;
     padding: 0;
@@ -26,32 +20,32 @@
 }
 
 body {
-    font-family: var(--font-body);
+    font-family: var(--font-principal);
     background-color: var(--color-fondo);
-    color: var(--color-texto);
+    color: var(--color-secundario);
     line-height: 1.6;
-    transition: background-color 0.5s;
+    padding-top: 70px; /* Espacio para el header fijo */
 }
 
-/* 1. ENCABEZADO (HEADER) - Limpio y Flotante */
+/* 1. ENCABEZADO (HEADER) - Limpio y Fijo */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
-    background-color: var(--color-acento-claro);
-    box-shadow: var(--sombra-moderna);
-    position: sticky;
+    padding: 15px 5%;
+    background-color: var(--color-tarjeta);
+    border-bottom: 1px solid var(--color-linea);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 1000;
 }
 
 .logo {
-    font-family: var(--font-header);
-    font-size: 2em;
-    font-weight: 900;
-    color: var(--color-principal);
-    letter-spacing: 1px;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--color-secundario);
 }
 
 .nav-menu ul {
@@ -61,12 +55,11 @@ body {
 
 .nav-menu ul li a {
     text-decoration: none;
-    color: var(--color-texto);
-    font-weight: 700;
+    color: var(--color-secundario);
+    font-weight: 400;
     font-size: 1em;
-    padding: 10px 15px;
-    border-bottom: 2px solid transparent; /* Efecto moderno en hover */
-    transition: all 0.3s;
+    padding: 8px 15px;
+    transition: color 0.3s, border-bottom 0.3s;
 }
 
 .nav-menu ul li a:hover {
@@ -76,142 +69,158 @@ body {
 
 /* 2. SECCIONES GENERALES */
 main {
-    padding: 40px 5%;
+    padding: 20px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .section {
-    padding: 60px 0;
-    margin-bottom: 40px;
+    padding: 40px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--color-linea);
 }
 
 h2 {
-    font-family: var(--font-header);
-    font-size: 2.8em;
-    color: var(--color-principal);
-    text-align: center;
-    margin-bottom: 40px;
-    font-weight: 900;
-    text-transform: uppercase;
+    font-size: 2.2em;
+    color: var(--color-secundario);
+    text-align: left;
+    margin-bottom: 30px;
+    font-weight: 700;
 }
 
-/* 3. PROYECTOS - Efecto de Tarjeta Flotante */
+/* 3. PROYECTOS - Minimalista y Sobrio */
 .proyectos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
 
 .proyecto-card {
-    background-color: var(--color-acento-claro);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: var(--sombra-moderna);
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid rgba(0, 0, 0, 0.05); /* Borde sutil */
+    background-color: var(--color-tarjeta);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+    border: 1px solid var(--color-linea);
 }
 
 .proyecto-card:hover {
-    transform: translateY(-5px); /* Efecto 3D sutil */
-    box-shadow: var(--sombra-fuerte); 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.proyecto-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid var(--color-linea);
 }
 
 .proyecto-card h3 {
     color: var(--color-principal);
     margin-bottom: 10px;
-    font-family: var(--font-header);
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 .proyecto-card .links a {
-    background-color: var(--color-secundario);
-    color: var(--color-texto);
-    font-weight: bold;
-    border-radius: 50px; /* Botones más suaves/modernos */
-    padding: 8px 18px;
-    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+    padding: 8px 15px;
+    margin-right: 10px;
+    margin-top: 10px;
+    background-color: var(--color-principal);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s;
 }
 
 .proyecto-card .links a:hover {
-    background-color: var(--color-principal);
-    color: var(--color-acento-claro);
-    transform: scale(1.05);
+    background-color: #005691; /* Azul más oscuro en hover */
 }
 
 
-/* 4. SECCIÓN SOBRE MÍ - Limpieza y Contraste */
-#sobre-mi {
-    background-color: var(--color-acento-claro);
-    padding: 50px 5%;
-    border-radius: 15px;
-    box-shadow: var(--sombra-moderna);
-}
-
+/* 4. SECCIÓN SOBRE MÍ */
 #sobre-mi h3 {
-    color: var(--color-secundario);
-    font-size: 1.8em;
-    margin-top: 20px;
-    padding-bottom: 5px;
-    font-family: var(--font-header);
+    color: var(--color-principal);
+    font-size: 1.5em;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+#sobre-mi p {
+    margin-bottom: 15px;
 }
 
-/* 5. SECCIÓN DE HERRAMIENTAS - Botones Modernos */
+/* 5. SECCIÓN DE HERRAMIENTAS - Botones Minimalistas */
 .herramientas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
     text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 800px;
+    margin-top: 20px;
 }
 
 .tool-item {
-    background-color: var(--color-acento-claro);
-    color: var(--color-principal);
-    padding: 20px 10px;
-    border-radius: 12px;
-    font-weight: 700;
-    border: 2px solid var(--color-secundario); /* Borde de color secundario */
-    transition: all 0.3s;
-    box-shadow: var(--sombra-moderna);
+    background-color: var(--color-tarjeta);
+    color: var(--color-secundario);
+    padding: 15px 5px;
+    border-radius: 6px;
+    font-weight: 600;
+    border: 1px solid var(--color-linea);
+    transition: all 0.2s;
 }
 
 .tool-item:hover {
-    transform: translateY(-5px) scale(1.05);
-    background-color: var(--color-principal);
-    color: var(--color-acento-claro);
-    box-shadow: var(--sombra-fuerte);
+    transform: translateY(-3px);
+    border-color: var(--color-principal);
+    color: var(--color-principal);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tool-item i {
-    font-size: 2.5em;
+    font-size: 2em;
     display: block;
     margin-bottom: 5px;
 }
 .tool-item span {
-    font-family: var(--font-header);
-    font-size: 0.9em;
+    font-size: 0.85em;
 }
 
 /* 6. PIE DE PÁGINA (FOOTER) */
 .footer {
-    background-color: var(--color-principal);
-    color: var(--color-acento-claro);
+    background-color: var(--color-secundario);
+    color: white;
     text-align: center;
-    padding: 30px 0;
+    padding: 25px 0;
 }
 
 .social-links a {
-    color: var(--color-acento-claro);
-    font-size: 1.8em;
-    margin: 0 12px;
+    color: white;
+    font-size: 1.6em;
+    margin: 0 10px;
     transition: color 0.3s;
 }
 
 .social-links a:hover {
-    color: var(--color-secundario); /* Acento moderno en hover */
+    color: var(--color-principal);
 }
 
 /* RESPONSIVE BÁSICO */
 @media (max-width: 768px) {
-    /* ... (Mantenemos los ajustes responsive básicos) ... */
+    .header {
+        flex-direction: column;
+        padding-bottom: 10px;
+        position: static; /* Deshabilitar fixed en móviles */
+    }
+    body {
+        padding-top: 0;
+    }
+    .nav-menu ul {
+        margin-top: 10px;
+    }
+    h2 {
+        text-align: center;
+    }
 }
