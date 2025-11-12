@@ -1,16 +1,17 @@
 /* ---------------------------------------------------- */
-/* 🎨 PALETA DE COLORES Y TIPOGRAFÍA MINIMALISTA */
+/* 🎨 PALETA DE COLORES Y TIPOGRAFÍA DE LA IMAGEN */
 /* ---------------------------------------------------- */
 :root {
-    --color-principal: #0077B6; /* Azul para acentos clave (links, botones) */
-    --color-secundario: #333333; /* Texto principal oscuro */
-    --color-fondo: #F8F8F8; /* Fondo blanco suave */
-    --color-tarjeta: #FFFFFF; /* Fondo de tarjetas */
-    --color-linea: #CCCCCC; /* Líneas divisorias sutiles */
+    --color-principal: #007bff; /* Azul vibrante como el del ejemplo */
+    --color-secundario: #343a40; /* Gris oscuro para texto principal */
+    --color-fondo: #f8f9fa; /* Fondo blanco muy suave */
+    --color-tarjeta: #ffffff; /* Fondo de tarjetas/secciones */
+    --color-borde: #dee2e6; /* Borde sutil */
+    --color-texto-claro: #6c757d; /* Gris para textos secundarios */
     
-    /* Tipografía: Usaremos una fuente más ligera y moderna */
-    --font-header: 'Helvetica Neue', Arial, sans-serif; /* Ligeramente más moderno que Arial */
-    --font-body: 'Arial', sans-serif;
+    /* Tipografías modernas y amigables de Google Fonts */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Poppins', sans-serif;
 }
 
 /* RESET BÁSICO */
@@ -25,28 +26,29 @@ body {
     background-color: var(--color-fondo);
     color: var(--color-secundario);
     line-height: 1.6;
-    padding-top: 70px; /* Espacio para el header fijo */
+    scroll-behavior: smooth; /* Desplazamiento suave */
 }
 
-/* 1. ENCABEZADO (HEADER) - Limpio y Fijo */
+/* 1. ENCABEZADO (HEADER) - ESTILO DE LA IMAGEN */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
+    padding: 20px 8%; /* Más padding para los lados */
     background-color: var(--color-tarjeta);
-    border-bottom: 1px solid var(--color-linea);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    position: fixed;
-    width: 100%;
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Sticky para que se quede arriba al hacer scroll */
     top: 0;
     z-index: 1000;
 }
 
 .logo {
+    font-family: var(--font-heading);
     font-size: 1.8em;
     font-weight: 700;
     color: var(--color-secundario);
+    text-decoration: none; /* Asegurar que no tenga subrayado si es un enlace */
 }
 
 .nav-menu ul {
@@ -54,76 +56,102 @@ body {
     display: flex;
 }
 
+.nav-menu ul li {
+    margin-left: 30px; /* Espacio entre los ítems del menú */
+}
+
 .nav-menu ul li a {
     text-decoration: none;
     color: var(--color-secundario);
-    font-weight: 400;
-    font-size: 1em;
-    padding: 8px 15px;
-    transition: color 0.3s, border-bottom 0.3s;
+    font-weight: 500; /* Ligeramente más grueso */
+    font-size: 1.05em;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s;
 }
 
+.nav-menu ul li a::after { /* Animación de subrayado en hover */
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-principal);
+    transition: width 0.3s ease-out;
+}
+
+.nav-menu ul li a:hover::after {
+    width: 100%;
+}
 .nav-menu ul li a:hover {
     color: var(--color-principal);
-    border-bottom: 2px solid var(--color-principal);
 }
 
-/* 2. SECCIÓN HERO (NUEVO - SECCIÓN PRINCIPAL DE PERFIL) */
+
+/* 2. SECCIÓN HERO (PRINCIPAL) - ESTILO DE LA IMAGEN */
 #hero {
     display: flex;
-    flex-direction: column;
+    justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center;
-    justify-content: center;
-    padding: 100px 5% 60px; /* Más espacio vertical */
-    text-align: center;
-    border-bottom: 1px solid var(--color-linea);
+    min-height: calc(100vh - 80px); /* Ocupa casi toda la altura de la pantalla */
+    padding: 80px 8% 40px;
+    text-align: left; /* Alineación del texto dentro del contenido */
+    position: relative;
 }
 
-.hero-content {
-    max-width: 800px;
+.hero-content-wrapper {
+    display: flex;
+    align-items: center; /* Centrar verticalmente elementos internos */
+    gap: 50px; /* Espacio entre el texto y la imagen */
+    max-width: 1000px; /* Ancho máximo para el contenido principal */
+    width: 100%;
 }
 
-/* Estilo para el nombre grande */
+.hero-text-content {
+    flex: 1; /* Ocupa el espacio disponible */
+    padding-right: 30px; /* Espacio antes de la imagen */
+}
+
+.greeting {
+    font-size: 1.2em;
+    color: var(--color-texto-claro);
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
 #hero h1 {
-    font-family: var(--font-header);
-    font-size: 3.5em; /* Tamaño grande para el nombre */
+    font-family: var(--font-heading);
+    font-size: 3.8em; /* Tamaño grande para el nombre */
     font-weight: 900;
     color: var(--color-secundario);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    line-height: 1.1;
 }
 
-/* Estilo para la carrera/título */
 #hero p.title {
-    font-size: 1.5em;
-    color: var(--color-principal);
-    font-weight: 300; /* Fuente ligera como en la imagen */
-    margin-bottom: 20px;
+    font-size: 1.6em;
+    color: var(--color-texto-claro);
+    font-weight: 300;
+    margin-bottom: 30px;
 }
 
-/* Estilo de la foto de perfil (Asume que tienes un div con clase 'profile-pic-container') */
-.profile-pic-container {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; /* Circular */
-    overflow: hidden;
-    margin-bottom: 20px;
-    border: 3px solid var(--color-principal); /* Borde de acento */
-    box-shadow: 0 0 0 5px var(--color-tarjeta); /* Borde blanco alrededor */
-}
-.profile-pic-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.hero-buttons {
+    margin-top: 25px;
+    display: flex; /* Para que los botones estén en línea */
+    gap: 15px; /* Espacio entre botones */
 }
 
-/* Botones en la sección Hero */
 .hero-buttons a {
     text-decoration: none;
-    padding: 12px 30px;
-    margin: 0 10px;
-    border-radius: 50px; /* Botones suaves */
+    padding: 12px 28px;
+    border-radius: 50px;
     font-weight: 600;
-    transition: all 0.3s;
+    font-size: 1.05em;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre texto e icono */
 }
 
 .btn-primary {
@@ -133,7 +161,9 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #005691;
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
 }
 
 .btn-secondary {
@@ -145,141 +175,336 @@ body {
 .btn-secondary:hover {
     background-color: var(--color-principal);
     color: var(--color-tarjeta);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Contenedor de la foto de perfil */
+.profile-pic-container {
+    width: 250px; /* Tamaño más grande para la imagen */
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--color-principal); /* Borde más prominente */
+    box-shadow: 0 0 0 8px var(--color-tarjeta), 0 10px 20px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* No permitir que se encoja */
+}
+.profile-pic-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Íconos sociales flotantes a la izquierda del hero */
+.hero-social-icons {
+    position: absolute;
+    left: 8%; /* Alineado con el padding del header */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.hero-social-icons a {
+    color: var(--color-texto-claro);
+    font-size: 1.8em;
+    transition: color 0.3s, transform 0.2s;
+}
+.hero-social-icons a:hover {
+    color: var(--color-principal);
+    transform: translateX(5px);
 }
 
 
 /* 3. SECCIONES GENERALES */
 main {
-    padding: 20px 5%;
+    padding: 80px 8%; /* Aumentar padding para que coincida con el header */
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .section {
-    padding: 40px 0;
-    margin-bottom: 30px;
-    border-bottom: 1px solid var(--color-linea);
+    padding: 60px 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--color-borde);
+}
+.section:last-of-type { /* Quitar borde al final */
+    border-bottom: none;
 }
 
 h2 {
-    font-size: 2.2em;
+    font-family: var(--font-heading);
+    font-size: 2.5em;
     color: var(--color-secundario);
-    /* Volvemos a la izquierda, ya que la imagen solo centra el hero */
-    text-align: left; 
-    margin-bottom: 30px;
+    text-align: center; /* Títulos de sección centrados */
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+h2 span { /* Para un posible estilo de acento si usas <span class="accent"> */
+    color: var(--color-principal);
+}
+
+
+/* 4. PROYECTOS - Estilo mejorado */
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.proyecto-card {
+    background-color: var(--color-tarjeta);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--color-borde);
+    text-align: center;
+}
+
+.proyecto-card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.proyecto-card img {
+    width: 100%;
+    height: 200px; /* Altura fija para uniformidad */
+    object-fit: cover; /* Recortar si es necesario */
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--color-borde);
+}
+
+.proyecto-card h3 {
+    font-family: var(--font-heading);
+    color: var(--color-principal);
+    margin-bottom: 15px;
+    font-size: 1.6em;
     font-weight: 700;
 }
 
-/* 4. PROYECTOS (Mantenemos el estilo minimalista anterior) */
-.proyectos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.proyecto-card p {
+    font-size: 0.95em;
+    color: var(--color-secundario);
+    margin-bottom: 25px;
 }
-.proyecto-card {
-    /* Estilos de tarjeta... (mantenidos del código anterior) */
-    background-color: var(--color-tarjeta);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s;
-    border: 1px solid var(--color-linea);
-}
-.proyecto-card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-.proyecto-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    border: 1px solid var(--color-linea);
-}
-.proyecto-card h3 {
-    color: var(--color-principal);
-    margin-bottom: 10px;
-    font-size: 1.4em;
-}
+
 .proyecto-card .links a {
-    /* Estilo de botón... (mantenido del código anterior) */
-    display: inline-block;
-    padding: 8px 15px;
-    margin-right: 10px;
-    margin-top: 10px;
+    display: inline-flex; /* Para alinear íconos */
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0 8px;
     background-color: var(--color-principal);
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 50px;
     font-weight: 600;
-    transition: background-color 0.3s;
-}
-.proyecto-card .links a:hover {
-    background-color: #005691;
+    transition: background-color 0.3s, transform 0.2s;
+    gap: 8px;
 }
 
-/* 5. SECCIÓN SOBRE MÍ y HERRAMIENTAS (Mantenemos el estilo anterior) */
+.proyecto-card .links a:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+
+/* 5. SECCIÓN SOBRE MÍ y HERRAMIENTAS */
 #sobre-mi h3 {
+    font-family: var(--font-heading);
     color: var(--color-principal);
-    font-size: 1.5em;
-    margin-top: 25px;
-    margin-bottom: 10px;
-}
-.herramientas-grid {
-    /* Estilos de herramientas... (mantenidos del código anterior) */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
+    font-size: 1.8em;
+    margin-top: 30px;
+    margin-bottom: 15px;
     text-align: center;
-    max-width: 800px;
-    margin-top: 20px;
 }
+#sobre-mi p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    text-align: justify; /* Texto justificado para párrafos largos */
+}
+
+.herramientas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    text-align: center;
+    max-width: 1000px;
+    margin: 50px auto 0;
+}
+
 .tool-item {
     background-color: var(--color-tarjeta);
     color: var(--color-secundario);
-    padding: 15px 5px;
-    border-radius: 6px;
+    padding: 20px 10px;
+    border-radius: 10px;
     font-weight: 600;
-    border: 1px solid var(--color-linea);
-    transition: all 0.2s;
-}
-.tool-item:hover {
-    transform: translateY(-3px);
-    border-color: var(--color-principal);
-    color: var(--color-principal);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.tool-item i {
-    font-size: 2em;
-    display: block;
-    margin-bottom: 5px;
+    border: 1px solid var(--color-borde);
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* 6. PIE DE PÁGINA (FOOTER) - Mantenemos el estilo anterior */
+.tool-item:hover {
+    transform: translateY(-5px) scale(1.03);
+    border-color: var(--color-principal);
+    color: var(--color-principal);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tool-item i {
+    font-size: 2.8em;
+    display: block;
+    margin-bottom: 10px;
+}
+.tool-item span {
+    font-family: var(--font-body);
+    font-size: 0.9em;
+}
+
+/* 6. PIE DE PÁGINA (FOOTER) */
 .footer {
-    /* Estilos de footer... (mantenidos del código anterior) */
     background-color: var(--color-secundario);
     color: white;
     text-align: center;
-    padding: 25px 0;
-}
-.social-links a {
-    color: white;
-    font-size: 1.6em;
-    margin: 0 10px;
-    transition: color 0.3s;
-}
-.social-links a:hover {
-    color: var(--color-principal);
+    padding: 40px 0;
+    margin-top: 60px;
 }
 
-/* RESPONSIVE BÁSICO */
+.footer p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 2em;
+    margin: 0 15px;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.social-links a:hover {
+    color: var(--color-principal);
+    transform: translateY(-3px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    #hero h1 {
+        font-size: 3em;
+    }
+    #hero p.title {
+        font-size: 1.3em;
+    }
+    .profile-pic-container {
+        width: 200px;
+        height: 200px;
+    }
+    .hero-content-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    .hero-text-content {
+        padding-right: 0;
+        order: 2; /* Texto debajo de la imagen en móvil */
+    }
+    .profile-pic-container {
+        order: 1; /* Imagen arriba del texto en móvil */
+    }
+    .hero-social-icons {
+        position: static; /* Quitar flotante en móvil */
+        transform: none;
+        flex-direction: row;
+        margin-top: 30px;
+        justify-content: center;
+    }
+    .hero-buttons {
+        justify-content: center; /* Centrar botones */
+    }
+}
+
 @media (max-width: 768px) {
-    /* ... (Mantenido del código anterior) ... */
+    .header {
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav-menu ul {
+        margin-top: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .nav-menu ul li {
+        margin: 0 10px;
+    }
+    #hero {
+        padding: 60px 5% 30px;
+        min-height: auto;
+    }
     #hero h1 {
         font-size: 2.5em;
     }
     #hero p.title {
-        font-size: 1.2em;
+        font-size: 1.1em;
+    }
+    .profile-pic-container {
+        width: 160px;
+        height: 160px;
+        border-width: 3px;
+        box-shadow: 0 0 0 5px var(--color-tarjeta), 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        font-size: 2em;
+    }
+    .proyectos-grid {
+        grid-template-columns: 1fr;
+    }
+    .tool-item i {
+        font-size: 2.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5em;
+    }
+    .nav-menu ul li {
+        margin: 5px 8px;
+    }
+    #hero h1 {
+        font-size: 2em;
+    }
+    #hero p.title {
+        font-size: 1em;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-buttons a {
+        width: 80%; /* Botones de ancho completo */
+        margin: 5px 0;
+    }
+    .profile-pic-container {
+        width: 120px;
+        height: 120px;
+    }
+    .hero-social-icons {
+        gap: 15px;
+        font-size: 1.5em;
+    }
+    main {
+        padding: 40px 5%;
+    }
+    h2 {
+        font-size: 1.8em;
     }
 }
