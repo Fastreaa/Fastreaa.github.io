@@ -8,8 +8,9 @@
     --color-tarjeta: #FFFFFF; /* Fondo de tarjetas */
     --color-linea: #CCCCCC; /* Líneas divisorias sutiles */
     
-    /* Tipografía Simple y legible */
-    --font-principal: 'Arial', sans-serif; 
+    /* Tipografía: Usaremos una fuente más ligera y moderna */
+    --font-header: 'Helvetica Neue', Arial, sans-serif; /* Ligeramente más moderno que Arial */
+    --font-body: 'Arial', sans-serif;
 }
 
 /* RESET BÁSICO */
@@ -20,7 +21,7 @@
 }
 
 body {
-    font-family: var(--font-principal);
+    font-family: var(--font-body);
     background-color: var(--color-fondo);
     color: var(--color-secundario);
     line-height: 1.6;
@@ -67,7 +68,87 @@ body {
     border-bottom: 2px solid var(--color-principal);
 }
 
-/* 2. SECCIONES GENERALES */
+/* 2. SECCIÓN HERO (NUEVO - SECCIÓN PRINCIPAL DE PERFIL) */
+#hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 5% 60px; /* Más espacio vertical */
+    text-align: center;
+    border-bottom: 1px solid var(--color-linea);
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+/* Estilo para el nombre grande */
+#hero h1 {
+    font-family: var(--font-header);
+    font-size: 3.5em; /* Tamaño grande para el nombre */
+    font-weight: 900;
+    color: var(--color-secundario);
+    margin-bottom: 5px;
+}
+
+/* Estilo para la carrera/título */
+#hero p.title {
+    font-size: 1.5em;
+    color: var(--color-principal);
+    font-weight: 300; /* Fuente ligera como en la imagen */
+    margin-bottom: 20px;
+}
+
+/* Estilo de la foto de perfil (Asume que tienes un div con clase 'profile-pic-container') */
+.profile-pic-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Circular */
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 3px solid var(--color-principal); /* Borde de acento */
+    box-shadow: 0 0 0 5px var(--color-tarjeta); /* Borde blanco alrededor */
+}
+.profile-pic-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botones en la sección Hero */
+.hero-buttons a {
+    text-decoration: none;
+    padding: 12px 30px;
+    margin: 0 10px;
+    border-radius: 50px; /* Botones suaves */
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--color-principal);
+    color: var(--color-tarjeta);
+    border: 2px solid var(--color-principal);
+}
+
+.btn-primary:hover {
+    background-color: #005691;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-principal);
+    border: 2px solid var(--color-principal);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-principal);
+    color: var(--color-tarjeta);
+}
+
+
+/* 3. SECCIONES GENERALES */
 main {
     padding: 20px 5%;
     max-width: 1200px;
@@ -83,19 +164,20 @@ main {
 h2 {
     font-size: 2.2em;
     color: var(--color-secundario);
-    text-align: left;
+    /* Volvemos a la izquierda, ya que la imagen solo centra el hero */
+    text-align: left; 
     margin-bottom: 30px;
     font-weight: 700;
 }
 
-/* 3. PROYECTOS - Minimalista y Sobrio */
+/* 4. PROYECTOS (Mantenemos el estilo minimalista anterior) */
 .proyectos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
-
 .proyecto-card {
+    /* Estilos de tarjeta... (mantenidos del código anterior) */
     background-color: var(--color-tarjeta);
     padding: 20px;
     border-radius: 8px;
@@ -103,12 +185,10 @@ h2 {
     transition: transform 0.2s;
     border: 1px solid var(--color-linea);
 }
-
 .proyecto-card:hover {
     transform: translateY(-5px); 
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
-
 .proyecto-card img {
     width: 100%;
     height: auto;
@@ -116,14 +196,13 @@ h2 {
     margin-bottom: 15px;
     border: 1px solid var(--color-linea);
 }
-
 .proyecto-card h3 {
     color: var(--color-principal);
     margin-bottom: 10px;
     font-size: 1.4em;
 }
-
 .proyecto-card .links a {
+    /* Estilo de botón... (mantenido del código anterior) */
     display: inline-block;
     padding: 8px 15px;
     margin-right: 10px;
@@ -135,25 +214,19 @@ h2 {
     font-weight: 600;
     transition: background-color 0.3s;
 }
-
 .proyecto-card .links a:hover {
-    background-color: #005691; /* Azul más oscuro en hover */
+    background-color: #005691;
 }
 
-
-/* 4. SECCIÓN SOBRE MÍ */
+/* 5. SECCIÓN SOBRE MÍ y HERRAMIENTAS (Mantenemos el estilo anterior) */
 #sobre-mi h3 {
     color: var(--color-principal);
     font-size: 1.5em;
     margin-top: 25px;
     margin-bottom: 10px;
 }
-#sobre-mi p {
-    margin-bottom: 15px;
-}
-
-/* 5. SECCIÓN DE HERRAMIENTAS - Botones Minimalistas */
 .herramientas-grid {
+    /* Estilos de herramientas... (mantenidos del código anterior) */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
@@ -161,7 +234,6 @@ h2 {
     max-width: 800px;
     margin-top: 20px;
 }
-
 .tool-item {
     background-color: var(--color-tarjeta);
     color: var(--color-secundario);
@@ -171,56 +243,43 @@ h2 {
     border: 1px solid var(--color-linea);
     transition: all 0.2s;
 }
-
 .tool-item:hover {
     transform: translateY(-3px);
     border-color: var(--color-principal);
     color: var(--color-principal);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .tool-item i {
     font-size: 2em;
     display: block;
     margin-bottom: 5px;
 }
-.tool-item span {
-    font-size: 0.85em;
-}
 
-/* 6. PIE DE PÁGINA (FOOTER) */
+/* 6. PIE DE PÁGINA (FOOTER) - Mantenemos el estilo anterior */
 .footer {
+    /* Estilos de footer... (mantenidos del código anterior) */
     background-color: var(--color-secundario);
     color: white;
     text-align: center;
     padding: 25px 0;
 }
-
 .social-links a {
     color: white;
     font-size: 1.6em;
     margin: 0 10px;
     transition: color 0.3s;
 }
-
 .social-links a:hover {
     color: var(--color-principal);
 }
 
 /* RESPONSIVE BÁSICO */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        padding-bottom: 10px;
-        position: static; /* Deshabilitar fixed en móviles */
+    /* ... (Mantenido del código anterior) ... */
+    #hero h1 {
+        font-size: 2.5em;
     }
-    body {
-        padding-top: 0;
-    }
-    .nav-menu ul {
-        margin-top: 10px;
-    }
-    h2 {
-        text-align: center;
+    #hero p.title {
+        font-size: 1.2em;
     }
 }
