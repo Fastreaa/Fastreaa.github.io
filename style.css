@@ -74,12 +74,12 @@ body {
     color: var(--color-principal);
 }
 
-/* 2. SECCIÓN HERO (PRINCIPAL) - ALINEACIÓN CORREGIDA */
+/* 2. SECCIÓN HERO (PRINCIPAL) */
 #hero {
     display: flex;
     justify-content: center; 
     align-items: center;
-    min-height: 80vh; /* Ajustado para que quepa en la pantalla */
+    min-height: 80vh; 
     padding: 80px 8% 40px;
     position: relative;
     border-bottom: 1px solid var(--color-borde); 
@@ -88,7 +88,7 @@ body {
 .hero-content-wrapper {
     display: flex;
     align-items: center; 
-    gap: 80px; /* Espacio aumentado */
+    gap: 80px; 
     max-width: 1100px;
     width: 100%;
 }
@@ -136,7 +136,6 @@ body {
     color: var(--color-principal);
 }
 
-
 /* Botones en Hero */
 .hero-buttons {
     display: flex;
@@ -174,7 +173,6 @@ body {
     height: 250px;
     border-radius: 50%;
     overflow: hidden;
-    /* Borde principal: el borde azul y la sombra */
     box-shadow: 0 0 0 5px var(--color-tarjeta), 0 0 0 8px var(--color-principal);
     flex-shrink: 0;
 }
@@ -183,12 +181,6 @@ body {
     height: 100%;
     object-fit: cover;
 }
-
-/* Íconos sociales flotantes (QUITADOS DE AQUÍ, AHORA ESTÁN INLINE) */
-.hero-social-icons {
-    display: none; 
-}
-
 
 /* 3. SECCIONES GENERALES INFERIORES */
 main {
@@ -201,6 +193,9 @@ main {
     padding: 60px 0;
     margin-bottom: 30px;
     border-bottom: 1px solid var(--color-borde);
+}
+.section:last-of-type {
+    border-bottom: none;
 }
 
 h2 {
@@ -217,23 +212,94 @@ h2 + p {
     margin-top: -40px; 
     margin-bottom: 50px;
 }
-/* ... (Estilos de proyectos y herramientas...) ... */
 
+/* 4. PROYECTOS y HERRAMIENTAS */
+.proyecto-card {
+    background-color: var(--color-tarjeta);
+    /* ... (estilos de tarjeta) */
+}
+.tool-item {
+    background-color: var(--color-tarjeta);
+    /* ... (estilos de herramienta) */
+}
 
 /* ---------------------------------------------------- */
 /* 🌙 ESTILOS DE MODO OSCURO (DARK MODE) */
 /* ---------------------------------------------------- */
 
 .dark-mode {
+    /* 1. RE-DEFINICIÓN DE VARIABLES EN MODO OSCURO */
     --color-principal: #66ccff; /* Azul más brillante para contraste */
-    --color-secundario: #f8f9fa; /* Texto claro */
+    --color-secundario: #f8f9fa; /* Texto claro (Blanco) */
     --color-fondo: #121212; /* Fondo muy oscuro */
     --color-tarjeta: #1e1e1e; /* Fondo de tarjetas oscuras */
     --color-borde: #333333; /* Borde oscuro */
     --color-texto-claro: #aaaaaa; /* Gris claro para texto secundario */
 }
 
-/* Botón de Modo Oscuro */
+/* 2. APLICACIÓN DE ESTILOS GLOBALES */
+
+/* Fondo del cuerpo */
+.dark-mode {
+    background-color: var(--color-fondo);
+    color: var(--color-secundario);
+}
+
+/* Header */
+.dark-mode .header {
+    background-color: var(--color-tarjeta);
+    border-bottom-color: var(--color-borde);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+}
+
+/* Títulos y Texto en General */
+.dark-mode .logo, 
+.dark-mode h1, .dark-mode h2, .dark-mode h3, 
+.dark-mode .nav-menu ul li a,
+.dark-mode .greeting, .dark-mode .title, .dark-mode p {
+    color: var(--color-secundario);
+}
+
+/* Nav Hover y Acenos */
+.dark-mode .nav-menu ul li a:hover {
+    color: var(--color-principal);
+}
+
+/* Tarjetas (Proyectos y Herramientas) */
+.dark-mode .proyecto-card,
+.dark-mode .tool-item {
+    background-color: var(--color-tarjeta);
+    border-color: var(--color-borde);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+
+/* Botones y Links de Aceno */
+.dark-mode .btn-secondary {
+    color: var(--color-principal);
+    border-color: var(--color-principal);
+}
+.dark-mode .btn-secondary:hover {
+    background-color: var(--color-principal);
+    color: #121212; 
+}
+.dark-mode .proyecto-card .links a {
+    background-color: var(--color-principal);
+    color: #121212;
+}
+
+/* Footer y Sociales */
+.dark-mode .footer {
+    background-color: var(--color-tarjeta);
+    border-top-color: var(--color-borde);
+}
+.dark-mode .footer p, .dark-mode .footer .social-links a {
+    color: var(--color-secundario);
+}
+.dark-mode .footer .social-links a:hover {
+    color: var(--color-principal);
+}
+
+/* Botón de Modo Oscuro (Icono) */
 #theme-toggle {
     background: transparent;
     border: none;
@@ -247,19 +313,57 @@ h2 + p {
     color: var(--color-principal);
 }
 
-.dark-mode .header {
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+/* RESPONSIVE */
+/* ... (Añadir aquí las media queries del CSS anterior para móvil) ... */
+@media (max-width: 992px) {
+    .hero-content-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    .hero-text-content {
+        order: 2;
+    }
+    .profile-pic-container {
+        order: 1;
+        width: 180px;
+        height: 180px;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
 }
-.dark-mode .nav-menu ul li a {
-    color: var(--color-secundario);
-}
-.dark-mode .proyecto-card,
-.dark-mode .tool-item {
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
-}
-.dark-mode .footer {
-    background-color: var(--color-tarjeta);
-}
-.dark-mode .social-links a {
-    color: var(--color-secundario);
+@media (max-width: 768px) {
+    /* ... (Ajustes para tablet) ... */
+    .header {
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .nav-menu {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .nav-menu ul {
+        justify-content: space-around;
+        padding-left: 0;
+    }
+    .nav-menu ul li {
+        margin: 0;
+    }
+    #hero {
+        padding: 60px 5% 30px;
+        min-height: auto;
+    }
+    #hero h1 {
+        font-size: 2.5em;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-buttons a {
+        width: 100%;
+        margin: 5px 0;
+    }
 }
