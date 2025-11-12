@@ -4,71 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emiliano Aguilar | Portafolio</title>
-    
-        <link rel="stylesheet" href="style.css">
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+        <link rel="stylesheet" href="style.css">
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="header">
-        
+        <a href="#hero" class="logo">Emiliano A.</a> 
         <nav class="nav-menu">
             <ul>
                 <li><a href="#hero">Inicio</a></li>
                 <li><a href="#sobre-mi">Sobre Mí</a></li>
                 <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#herramientas">Habilidades</a></li>
+                <li><a href="#herramientas">Habilidades</a></li>
                 <li><a href="#contacto">Contacto</a></li>
+                <li><button id="theme-toggle" aria-label="Toggle Dark Mode"><i class="fas fa-sun"></i></button></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        
-        <section id="hero">
-            <div class="hero-social-icons">
-                <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="URL_DE_LINKEDIN" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="MAILTO:foboseaa@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-            
+        
+                <section id="hero">
             <div class="hero-content-wrapper">
                 <div class="hero-text-content">
                     <p class="greeting">Hola, soy</p>
                     <h1>Emiliano Aguilar</h1>
                     <p class="title">Estudiante de Ingeniería en Tecnologías de Cómputo y Telecomunicaciones</p>
+                    
+                    <div class="inline-social-icons">
+                        <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="URL_DE_LINKEDIN" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="MAILTO:foboseaa@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    
                     <div class="hero-buttons">
                         <a href="ruta/a/tu/cv.pdf" download class="btn-primary">Descargar CV <i class="fas fa-download"></i></a>
                         <a href="#contacto" class="btn-secondary">Contactar <i class="fas fa-paper-plane"></i></a>
                     </div>
                 </div>
                 <div class="profile-pic-container">
-                    <img src="images/perfil.jpeg" alt="Emiliano Aguilar"> 
+                    <img src="images/perfil.jpeg" alt="Emiliano Aguilar">
                 </div>
             </div>
-        </section>
+        </section>
 
 
-        
         <section id="sobre-mi" class="section">
             <h2>Sobre Mí</h2>
-            <p>Conóceme mejor</p>
+            <p>Conóceme mejor</p>
             <p>Soy un **Estudiante de Ingeniería en Tecnologías de Cómputo y Telecomunicaciones** con una profunda pasión por la intersección entre el software, el hardware y la comunicación de datos. Mi objetivo es desarrollar soluciones tecnológicas innovadoras y eficientes que aborden los desafíos del mundo real.</p>
-            
+            
             <p>Además de mis estudios, me dedico activamente a la **divulgación de ciencia y tecnología** en redes sociales, donde he tenido el privilegio de construir y nutrir una comunidad de **más de 300K** seguidores. Creo firmemente en la importancia de compartir el conocimiento y fomentar el interés en STEM.</p>
-            
-            <p>Estoy siempre en busca de nuevas oportunidades para aprender y aplicar mis habilidades. Me entusiasma colaborar en **proyectos de Código Abierto (Open Source)**, donde puedo contribuir al desarrollo colectivo y explorar nuevas tecnologías en un entorno colaborativo.</p>
+            
+            <p>Estoy siempre en busca de nuevas oportunidades para aprender y aplicar mis habilidades. Me entusiasma colaborar en **proyectos de Código Abierto (Open Source)**, donde puedo contribuir al desarrollo colectivo y explorar nuevas tecnologías en un entorno colaborativo.</p>
         </section>
-        
-        
+        
+        
         <section id="proyectos" class="section proyectos-grid">
             <h2>Proyectos Destacados</h2>
             
                         <div class="proyecto-card">
-                <img src="images/cms.jpeg" alt="Detector CMS del CERN"> 
+                <img src="images/cms.jpeg" alt="Detector CMS del CERN"> 
                 <h3>Análisis de Datos: Reconstrucción de Muón (CMS)</h3>
                 <p>Reconstrucción de una traza de muón utilizando datos simulados del experimento CMS del CERN, aplicando la herramienta ROOT y Python para el procesamiento y visualización de resultados. (Tecnologías: Python, ROOT, Física).</p>
                 <div class="links">
@@ -77,7 +78,7 @@
             </div>
 
                         <div class="proyecto-card">
-                <img src="images/logogithub.jpg" alt="Logo de GitHub"> 
+                <img src="images/logogithub.jpg" alt="Logo de GitHub"> 
                 <h3>Portafolio Completo y Código Fuente</h3>
                 <p>Explora todos mis proyectos, repositorios y contribuciones, desde desarrollo web y bases de datos hasta scripts de automatización. Todo el código fuente está disponible en mi GitHub.</p>
                 <div class="links">
@@ -86,23 +87,23 @@
             </div>
             
         </section>
-        
-        
-        <section id="herramientas" class="section">
-            <h2>Habilidades y Tecnologías</h2>
-            <div class="herramientas-grid">
-                
-                <div class="tool-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-                <div class="tool-item"><i class="fas fa-database"></i><span>MySQL</span></div>
-                <div class="tool-item"><i class="fas fa-database"></i><span>MongoDB</span></div>
-                <div class="tool-item"><i class="fab fa-docker"></i><span>Docker</span></div>
-                <div class="tool-item"><i class="fas fa-code"></i><span>C</span></div>
-                <div class="tool-item"><i class="fab fa-java"></i><span>Java</span></div>
-                <div class="tool-item"><i class="fab fa-python"></i><span>Python</span></div>
-                <div class="tool-item"><i class="fab fa-html5"></i><span>HTML</span></div>
-                <div class="tool-item"><i class="fas fa-chart-bar"></i><span>ROOT CERN</span></div>
-            </div>
-        </section>
+        
+        
+        <section id="herramientas" class="section">
+            <h2>Habilidades y Tecnologías</h2>
+            <div class="herramientas-grid">
+                
+                <div class="tool-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+                <div class="tool-item"><i class="fas fa-database"></i><span>MySQL</span></div>
+                <div class="tool-item"><i class="fas fa-database"></i><span>MongoDB</span></div>
+                <div class="tool-item"><i class="fab fa-docker"></i><span>Docker</span></div>
+                <div class="tool-item"><i class="fas fa-code"></i><span>C</span></div>
+                <div class="tool-item"><i class="fab fa-java"></i><span>Java</span></div>
+                <div class="tool-item"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="tool-item"><i class="fab fa-html5"></i><span>HTML</span></div>
+                <div class="tool-item"><i class="fas fa-chart-bar"></i><span>ROOT CERN</span></div>
+            </div>
+        </section>
 
     </main>
 
@@ -112,11 +113,48 @@
                         <a href="MAILTO:tu_email@ejemplo.com" title="Email"><i class="fas fa-envelope"></i></a>
             <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
             <a href="https://www.facebook.com/share/17n9pHAmy9/?mibextid=wwXIfr" target="_blank" title="Divulgación Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/emilianoagl?igsh=MTBuM2NqNDNuZHZiaA%3D%3D&utm_source=qr" target="_blank" title="Instagram Personal"><i class="fab fa-instagram"></i></a>
-            <a href="URL_DE_LINKEDIN" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/emilianoagl?igsh=MTBuM2NqNDNuZHZiaA%3D%3D&utm_source=qr" target="_blank" title="Instagram Personal"><i class="fab fa-instagram"></i></a>
+            <a href="URL_DE_LINKEDIN" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <p>&copy; 2025 Emiliano Aguilar. Todos los derechos reservados.</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('theme-toggle');
+            const icon = toggleButton.querySelector('i');
+            const body = document.body;
+
+            // Función para aplicar el tema
+            const applyTheme = (isDark) => {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                } else {
+                    body.classList.remove('dark-mode');
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            };
+
+            // Cargar tema guardado o por defecto (claro)
+            const savedTheme = localStorage.getItem('theme');
+            applyTheme(savedTheme === 'dark');
+
+            // Event listener para el botón
+            toggleButton.addEventListener('click', () => {
+                const isDark = body.classList.contains('dark-mode');
+                
+                if (isDark) {
+                    applyTheme(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    applyTheme(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
