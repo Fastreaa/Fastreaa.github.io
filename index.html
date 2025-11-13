@@ -134,7 +134,7 @@
             const icon = toggleButton.querySelector('i');
             const body = document.body;
 
-            // 1. Lógica del Modo Oscuro (Mantenida)
+            // 1. Lógica del Modo Oscuro
             const applyTheme = (isDark) => {
                 if (isDark) {
                     body.classList.add('dark-mode');
@@ -161,7 +161,7 @@
                 }
             });
             
-            // 2. Lógica del Menú de Hamburguesa (NUEVA)
+            // 2. Lógica del Menú de Hamburguesa
             menuToggleButton.addEventListener('click', () => {
                 navMenu.classList.toggle('nav-open');
             });
