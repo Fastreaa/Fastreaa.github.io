@@ -49,6 +49,21 @@ body {
     text-decoration: none;
 }
 
+/* BOTÓN DE HAMBURGUESA - Visibilidad solo en Móvil */
+#menu-toggle, #theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-secundario);
+    font-size: 1.4em;
+    transition: color 0.3s;
+    margin-left: 15px;
+    padding: 5px;
+}
+#menu-toggle {
+    display: none; /* Ocultar por defecto en desktop */
+}
+
 .nav-menu ul {
     list-style: none;
     display: flex;
@@ -219,15 +234,15 @@ h2 + p {
 .proyecto-card {
     background-color: var(--color-tarjeta);
     padding: 25px;
-    border-radius: 8px; /* Bordes suaves */
+    border-radius: 8px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s, box-shadow 0.2s;
     border: 1px solid var(--color-borde);
-    text-align: center; /* Centrar contenido de la tarjeta */
+    text-align: center; 
 }
 
 .proyecto-card:hover {
-    transform: translateY(-5px); /* Movimiento interactivo */
+    transform: translateY(-5px); 
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -241,7 +256,7 @@ h2 + p {
 }
 
 .proyecto-card h3 {
-    font-family: var(--font-body); /* Fuente más legible para el título del proyecto */
+    font-family: var(--font-body); 
     color: var(--color-principal);
     margin-bottom: 10px;
     font-size: 1.4em;
@@ -255,14 +270,14 @@ h2 + p {
 }
 
 .proyecto-card .links a {
-    display: inline-flex; /* Para alinear íconos */
+    display: inline-flex; 
     align-items: center;
     padding: 8px 15px;
     margin: 0 5px;
     background-color: var(--color-principal);
     color: white;
     text-decoration: none;
-    border-radius: 4px; /* Botones más cuadrados/amigables */
+    border-radius: 4px; 
     font-weight: 600;
     transition: background-color 0.3s, transform 0.2s;
     gap: 8px;
@@ -295,14 +310,14 @@ h2 + p {
 }
 
 .tool-item:hover {
-    transform: translateY(-5px); /* Movimiento interactivo */
+    transform: translateY(-5px); 
     border-color: var(--color-principal);
     color: var(--color-principal);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .tool-item i {
-    font-size: 2.5em; /* Ligeramente más pequeños */
+    font-size: 2.5em; 
     display: block;
     margin-bottom: 10px;
 }
@@ -319,7 +334,6 @@ h2 + p {
     padding: 40px 0;
     margin-top: 60px;
 }
-/* ... (Estilos de footer y responsive) ... */
 
 /* ---------------------------------------------------- */
 /* 🌙 ESTILOS DE MODO OSCURO (DARK MODE) */
@@ -377,19 +391,96 @@ h2 + p {
     color: var(--color-principal);
 }
 
-/* RESPONSIVE */
-/* Mantener las media queries del CSS anterior */
-/* ... (Asegurar que el responsive para HERO siga funcionando) ... */
+/* ---------------------------------------------------- */
+/* 📱 AJUSTES MÓVILES (MENÚ DE HAMBURGUESA) */
+/* ---------------------------------------------------- */
 @media (max-width: 992px) {
-    /* ... (Ajustes para tablet) ... */
-    .hero-content-wrapper { flex-direction: column; text-align: center; gap: 30px; }
-    .hero-text-content { order: 2; }
-    .profile-pic-container { order: 1; width: 180px; height: 180px; }
-    .hero-buttons { justify-content: center; }
+    /* 1. Ocultar el menú de navegación y mostrar el botón de hamburguesa */
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%; /* Colocar debajo del header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-tarjeta);
+        border-top: 1px solid var(--color-borde);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    /* Mostrar el menú cuando se activa la clase 'nav-open' por JS */
+    .nav-menu.nav-open {
+        display: block;
+    }
+
+    /* Estilos de la lista para menú vertical */
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0;
+    }
+    .nav-menu ul li {
+        width: 100%;
+        margin-left: 0;
+    }
+    .nav-menu ul li a, 
+    .nav-menu ul li button {
+        display: block;
+        width: 100%;
+        padding: 15px 8%;
+        text-align: left;
+        border-bottom: 1px solid var(--color-borde);
+        font-size: 1.1em;
+    }
+    .nav-menu ul li:last-child a,
+    .nav-menu ul li:last-child button {
+        border-bottom: none;
+    }
+    
+    /* Mostrar el botón de hamburguesa */
+    #menu-toggle {
+        display: inline-block;
+        font-size: 1.8em;
+    }
+    
+    /* El botón de tema debe estar junto al botón de menú o logo */
+    #theme-toggle {
+        margin-left: 0;
+    }
+
+    /* Ajustes del HERO para móvil/tablet */
+    .hero-content-wrapper { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 30px; 
+    }
+    .hero-text-content { 
+        order: 2; 
+    }
+    .profile-pic-container { 
+        order: 1; 
+        width: 180px; 
+        height: 180px; 
+    }
+    .hero-buttons { 
+        justify-content: center; 
+    }
+    .inline-social-icons {
+        justify-content: center;
+    }
+    
+    /* Ajustes finales de botones para que ocupen el ancho completo */
+    .hero-buttons {
+        flex-direction: column;
+    }
+    .hero-buttons a {
+        width: 100%;
+        text-align: center;
+    }
 }
 @media (max-width: 768px) {
-    /* ... (Ajustes para móvil) ... */
-    .hero-content-wrapper { gap: 20px; }
-    .hero-buttons { flex-direction: column; align-items: center; }
-    .hero-buttons a { width: 80%; }
+    /* ... (Ajustes para móvil más pequeño) ... */
+    .header {
+        padding: 15px 5%;
+    }
 }
