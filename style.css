@@ -394,12 +394,23 @@ h2 + p {
 }
 
 /* ---------------------------------------------------- */
-/* 📱 AJUSTES MÓVILES (MENÚ DE HAMBURGUESA) */
+/* 📱 AJUSTES MÓVILES Y TABLET */
 /* ---------------------------------------------------- */
 @media (max-width: 992px) {
-    /* 1. Ocultar el menú de navegación y mostrar el botón de hamburguesa */
+    /* Header */
+    .header {
+        padding: 15px 5%; /* Ajustar padding del header */
+    }
+
+    /* Mostrar el botón de hamburguesa en móvil */
+    #menu-toggle {
+        display: inline-block;
+        font-size: 1.8em;
+    }
+    
+    /* Menú de navegación móvil */
     .nav-menu {
-        display: none;
+        display: none; /* Ocultar por defecto en móvil */
         position: absolute;
         top: 100%; 
         left: 0;
@@ -409,13 +420,9 @@ h2 + p {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         z-index: 999;
     }
-
-    /* Mostrar el menú cuando se activa la clase 'nav-open' por JS */
     .nav-menu.nav-open {
-        display: block;
+        display: block; /* Mostrar cuando la clase 'nav-open' está activa */
     }
-
-    /* Estilos de la lista para menú vertical */
     .nav-menu ul {
         flex-direction: column;
         align-items: flex-start;
@@ -429,7 +436,7 @@ h2 + p {
     .nav-menu ul li button {
         display: block;
         width: 100%;
-        padding: 15px 8%;
+        padding: 15px 5%; /* Padding ajustado para enlaces de menú móvil */
         text-align: left;
         border-bottom: 1px solid var(--color-borde);
         font-size: 1.1em;
@@ -438,46 +445,93 @@ h2 + p {
     .nav-menu ul li:last-child button {
         border-bottom: none;
     }
-    
-    /* Mostrar el botón de hamburguesa */
-    #menu-toggle {
-        display: inline-block;
-        font-size: 1.8em;
+    #theme-toggle { /* Asegurar que el botón de tema no tenga margen izquierdo extra en móvil */
+        margin-left: 0;
     }
-    
-    /* Ajustes del HERO para móvil/tablet */
+
+    /* Sección HERO - Ajustes para que la foto y los botones se vean bien */
+    #hero {
+        padding-top: 50px; /* Reducir padding superior del hero */
+        min-height: auto; /* Permitir que el contenido defina la altura */
+    }
     .hero-content-wrapper { 
         flex-direction: column; 
         text-align: center; 
-        gap: 30px; 
+        gap: 40px; /* Aumentar espacio entre elementos en móvil */
     }
     .hero-text-content { 
         order: 2; 
+        max-width: 100%; /* Asegurar que ocupe todo el ancho disponible */
     }
     .profile-pic-container { 
         order: 1; 
-        width: 180px; 
-        height: 180px; 
+        width: 160px; /* Tamaño más pequeño para la foto de perfil */
+        height: 160px;
+        box-shadow: 0 0 0 4px var(--color-tarjeta), 0 0 0 7px var(--color-principal); /* Borde más pequeño */
     }
-    .hero-buttons { 
-        justify-content: center; 
+    #hero h1 {
+        font-size: 2.8em; /* Tamaño de fuente ajustado para el título principal */
+    }
+    #hero p.title {
+        font-size: 1.3em; /* Tamaño de fuente ajustado para el subtítulo */
     }
     .inline-social-icons {
-        justify-content: center;
+        justify-content: center; /* Centrar íconos sociales */
     }
-    
-    /* Ajustes finales de botones para que ocupen el ancho completo */
-    .hero-buttons {
-        flex-direction: column;
+    .hero-buttons { 
+        flex-direction: column; 
+        align-items: center;
+        width: 100%; /* Asegurar que los botones ocupen todo el ancho */
     }
     .hero-buttons a {
-        width: 100%;
-        text-align: center;
+        width: 80%; /* Hacer los botones un poco más estrechos que el 100% para estética */
+        max-width: 250px; /* Limitar el ancho máximo de los botones */
+        justify-content: center; /* Centrar el texto y el ícono dentro del botón */
+        padding: 10px 20px; /* Reducir padding de los botones */
+        font-size: 0.95em; /* Tamaño de fuente ligeramente menor */
+    }
+
+    /* Sección de Herramientas - Mostrar en dos columnas y centrado */
+    .herramientas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Autoajuste de columnas más flexibles */
+        justify-content: center; /* Centrar los elementos del grid si no llenan todo el ancho */
+        max-width: 600px; /* Limitar el ancho máximo del grid en móvil para que no se estire demasiado */
+        margin: 50px auto 0; /* Centrar el contenedor del grid */
+    }
+    .tool-item {
+        padding: 15px 8px; /* Reducir padding de los items */
+        font-size: 0.9em; /* Ajustar tamaño de fuente */
+    }
+    .tool-item i {
+        font-size: 2em; /* Reducir tamaño de íconos */
+    }
+
+    /* Proyectos - Ajustes si es necesario para pantallas muy pequeñas */
+    .proyectos-grid {
+        grid-template-columns: 1fr; /* Una sola columna para proyectos en móviles muy pequeños */
     }
 }
-@media (max-width: 768px) {
-    /* Ajustes para móvil más pequeño */
-    .header {
-        padding: 15px 5%;
+
+@media (max-width: 576px) { /* Para pantallas aún más pequeñas */
+    .hero-content-wrapper {
+        gap: 30px;
+    }
+    #hero h1 {
+        font-size: 2.2em;
+    }
+    #hero p.title {
+        font-size: 1.1em;
+    }
+    .profile-pic-container {
+        width: 140px;
+        height: 140px;
+        box-shadow: 0 0 0 3px var(--color-tarjeta), 0 0 0 6px var(--color-principal);
+    }
+    .hero-buttons a {
+        width: 90%; /* Los botones ocupan un poco más de ancho */
+    }
+    .herramientas-grid {
+        grid-template-columns: repeat(2, 1fr); /* Forzar 2 columnas en pantallas muy pequeñas */
+        max-width: 350px; /* Ancho máximo para el grid de herramientas */
     }
 }
