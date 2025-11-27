@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emiliano Aguilar | Terminal de Acceso</title>
+    <title>Emiliano Aguilar | Portafolio Interactivo</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
@@ -14,7 +16,6 @@
             --terminal-green: #00ff41; /* Verde clásico hacker */
             --cyber-blue: #00f3ff; /* Azul futurista */
             --text-main: #e0e0e0;
-            --glass-panel: rgba(0, 243, 255, 0.05);
             --font-tech: 'Share Tech Mono', monospace;
         }
 
@@ -47,6 +48,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            text-align: center;
         }
 
         .terminal-text {
@@ -54,9 +56,22 @@
             font-size: 1.2rem;
             max-width: 600px;
             width: 100%;
-            white-space: pre-wrap; /* Mantiene saltos de línea */
-            border-right: 2px solid var(--terminal-green); /* Cursor */
+            text-align: left; /* Alineado a la izquierda como terminal real */
+            white-space: pre-wrap;
+            border-right: 2px solid var(--terminal-green);
             animation: blink 0.75s step-end infinite;
+            margin-bottom: 20px;
+        }
+
+        /* Disclaimer de seguridad (Nuevo) */
+        .safe-mode-label {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            border: 1px solid #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            animation: fadeIn 2s ease-in;
         }
 
         #start-btn {
@@ -70,7 +85,7 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
-            opacity: 0; /* Invisible al inicio */
+            opacity: 0;
             transition: all 0.3s ease;
             box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
         }
@@ -85,8 +100,12 @@
             display: none !important;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         /* --- INTERFAZ PRINCIPAL (MAIN UI) --- */
-        /* Header estilo HUD */
         header {
             position: fixed;
             top: 0;
@@ -119,12 +138,11 @@
             text-shadow: 0 0 8px var(--cyber-blue);
         }
 
-        /* Estilo general de secciones */
         section {
             padding: 100px 20px;
             max-width: 1200px;
             margin: 0 auto;
-            border-left: 1px dashed rgba(0, 243, 255, 0.2); /* Línea guía decorativa */
+            border-left: 1px dashed rgba(0, 243, 255, 0.2);
         }
 
         h1, h2, h3 {
@@ -181,7 +199,7 @@
             border: 3px solid var(--cyber-blue);
             box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
             object-fit: cover;
-            filter: grayscale(40%) contrast(1.2); /* Efecto sci-fi */
+            filter: grayscale(40%) contrast(1.2);
         }
 
         /* Botones Tech */
@@ -319,10 +337,10 @@
                 display: flex;
             }
             #menu-toggle {
-                display: block; /* Asegúrate de estilizar el botón toggle si falta */
+                display: block;
                 background: none;
                 border: none;
-                color: #fff;
+                color: var(--cyber-blue);
                 font-size: 2rem;
                 position: absolute;
                 right: 20px;
@@ -336,7 +354,12 @@
 
     <div id="boot-overlay">
         <div id="terminal-output" class="terminal-text"></div>
-        <button id="start-btn">> ACCEDER AL SISTEMA</button>
+        
+        <div class="safe-mode-label">
+            <i class="fas fa-shield-alt"></i> Entorno Seguro Verificado: Portafolio Interactivo
+        </div>
+
+        <button id="start-btn">> INGRESAR AL PORTAFOLIO</button>
     </div>
 
     <div id="main-interface" class="hidden">
@@ -404,7 +427,9 @@
                     <p style="font-size: 0.9rem; color: #aaa;">Protocolo: Python + ROOT</p>
                     <p style="margin-top: 10px;">Reconstrucción de masa invariante utilizando bases de datos reales del CMS. Visualización de física de partículas de alto nivel.</p>
                     <div style="margin-top: 15px;">
-                        <a href="#" class="btn-tech" style="font-size: 0.8rem;">Ver Código</a>
+                        <a href="https://colab.research.google.com/drive/1OVwEsXx-r4NP-IgMIRVGNl2yb4NwHDlD?usp=sharing" target="_blank" class="btn-tech" style="font-size: 0.8rem;">
+                            Ver Código <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -412,9 +437,9 @@
                     <img src="images/logogithub.jpg" alt="GitHub"> 
                     <h3>Repositorio Central</h3>
                     <p style="font-size: 0.9rem; color: #aaa;">Acceso: Público</p>
-                    <p style="margin-top: 10px;">Acceso directo a todos los scripts de automatización, configuraciones de red y desarrollos web.</p>
+                    <p style="margin-top: 10px;">Acceso directo a todos los proyectos, scripts de automatización, configuraciones de red y desarrollos web.</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://github.com/Fastreaa" class="btn-tech" style="font-size: 0.8rem;">git pull origin</a>
+                        <a href="https://github.com/Fastreaa" target="_blank" class="btn-tech" style="font-size: 0.8rem;">git pull origin</a>
                     </div>
                 </div>
             </section>
@@ -429,6 +454,7 @@
                     <div class="tool-item"><i class="fas fa-database"></i><span>MySQL / Mongo</span></div>
                     <div class="tool-item"><i class="fab fa-docker"></i><span>Docker Containers</span></div>
                     <div class="tool-item"><i class="fas fa-atom"></i><span>Física Computacional</span></div>
+                    <div class="tool-item"><i class="fas fa-server"></i><span>GNS3</span></div>
                 </div>
             </section>
 
@@ -437,10 +463,11 @@
         <footer id="contacto" class="footer">
             <p style="color: var(--cyber-blue); margin-bottom: 20px;">> FIN DE TRANSMISIÓN. ¿RESPONDER?</p>
             <div class="social-links">
-                <a href="MAILTO:foboseaa@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/Fastreaa"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.instagram.com/emilianoagl"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:foboseaa@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/emilianoagl?igsh=MTBuM2NqNDNuZHZiaA%3D%3D&utm_source=qr" target="_blank" title="Instagram Personal"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/17n9pHAmy9/?mibextid=wwXIfr" target="_blank" title="Divulgación Facebook"><i class="fab fa-facebook-f"></i></a>
             </div>
             <p style="margin-top: 30px; font-size: 0.8rem; color: #555;">
                 &copy; 2025 Sistema Emiliano Aguilar. Versión 2.0
@@ -449,17 +476,16 @@
     </div>
 
     <script>
-        // TEXTO DE LA HISTORIA (Puedes editar esto)
+        // TEXTO ACTUALIZADO (Menos agresivo, más claro)
         const terminalText = [
-            "Iniciando secuencia de arranque...",
-            "Cargando módulos de memoria...",
-            "Detectando usuario: INVITADO",
-            "Resolviendo dirección IP...",
-            "Conexión establecida con el nodo: FASTREAA",
-            "Acceso concedido."
+            "Iniciando Portafolio Interactivo v2.0...",
+            "Verificando entorno seguro... OK.",
+            "Cargando perfil de Ingeniería: Emiliano Aguilar",
+            "Estableciendo conexión con GitHub...",
+            "Acceso Concedido. Bienvenido."
         ];
 
-        const speed = 50; // Velocidad de escritura
+        const speed = 40; // Un poco más rápido para que no aburra
         let lineIndex = 0;
         let charIndex = 0;
         const outputDiv = document.getElementById('terminal-output');
@@ -467,11 +493,9 @@
         const overlay = document.getElementById('boot-overlay');
         const mainInterface = document.getElementById('main-interface');
 
-        // Función de Efecto Máquina de Escribir
         function typeWriter() {
             if (lineIndex < terminalText.length) {
                 if (charIndex < terminalText[lineIndex].length) {
-                    // Si es el primer caracter de la línea, agregar salto de línea
                     if (charIndex === 0 && lineIndex > 0) {
                         outputDiv.innerHTML += "<br>"; 
                     }
@@ -479,42 +503,34 @@
                     charIndex++;
                     setTimeout(typeWriter, speed);
                 } else {
-                    // Fin de la línea actual
                     lineIndex++;
                     charIndex = 0;
-                    setTimeout(typeWriter, 300); // Pausa entre líneas
+                    setTimeout(typeWriter, 300); 
                 }
             } else {
-                // Fin de todo el texto, mostrar botón
                 startBtn.style.opacity = '1';
             }
         }
 
-        // Iniciar la animación al cargar
         window.onload = typeWriter;
 
-        // Acción al pulsar el botón
         startBtn.addEventListener('click', () => {
-            overlay.style.transition = 'opacity 1s ease';
+            overlay.style.transition = 'opacity 0.8s ease';
             overlay.style.opacity = '0';
             
             setTimeout(() => {
                 overlay.style.display = 'none';
                 mainInterface.classList.remove('hidden');
-                // Pequeña animación de entrada para el main
                 mainInterface.style.animation = 'fadeIn 1s forwards';
-            }, 1000);
+            }, 800);
         });
 
-        // Toggle del menú móvil
         const menuBtn = document.getElementById('menu-toggle');
         const navMenu = document.querySelector('.nav-menu');
         
-        // Comprobamos si el botón existe (por si estás en desktop)
         if(menuBtn){
             menuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('nav-open');
-                // Cambiar estilo de display si es necesario en CSS móvil
                 if(navMenu.classList.contains('nav-open')){
                     navMenu.querySelector('ul').style.display = 'flex';
                 } else {
