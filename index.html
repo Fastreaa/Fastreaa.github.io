@@ -1,177 +1,527 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emiliano Aguilar | Portafolio</title>
-    
-        <link rel="stylesheet" href="style.css">
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emiliano Aguilar | Terminal de Acceso</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURACIÓN BASE (RESET & THEME) --- */
+        :root {
+            --bg-color: #050505; /* Negro profundo */
+            --terminal-green: #00ff41; /* Verde clásico hacker */
+            --cyber-blue: #00f3ff; /* Azul futurista */
+            --text-main: #e0e0e0;
+            --glass-panel: rgba(0, 243, 255, 0.05);
+            --font-tech: 'Share Tech Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-tech);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- PANTALLA DE ARRANQUE (BOOT SEQUENCE) --- */
+        #boot-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .terminal-text {
+            color: var(--terminal-green);
+            font-size: 1.2rem;
+            max-width: 600px;
+            width: 100%;
+            white-space: pre-wrap; /* Mantiene saltos de línea */
+            border-right: 2px solid var(--terminal-green); /* Cursor */
+            animation: blink 0.75s step-end infinite;
+        }
+
+        #start-btn {
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--terminal-green);
+            color: var(--terminal-green);
+            font-family: var(--font-tech);
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0; /* Invisible al inicio */
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+        }
+
+        #start-btn:hover {
+            background: var(--terminal-green);
+            color: #000;
+            box-shadow: 0 0 20px var(--terminal-green);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- INTERFAZ PRINCIPAL (MAIN UI) --- */
+        /* Header estilo HUD */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.9);
+            border-bottom: 1px solid var(--cyber-blue);
+            padding: 15px 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-menu ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--cyber-blue);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px var(--cyber-blue);
+        }
+
+        /* Estilo general de secciones */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-left: 1px dashed rgba(0, 243, 255, 0.2); /* Línea guía decorativa */
+        }
+
+        h1, h2, h3 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: var(--cyber-blue);
+            border-bottom: 2px solid var(--cyber-blue);
+            display: inline-block;
+            margin-bottom: 30px;
+            padding-bottom: 5px;
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            position: relative;
+        }
+
+        .hero-content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text-content h1 {
+            font-size: 3.5rem;
+            margin: 10px 0;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .greeting {
+            color: var(--terminal-green);
+            font-size: 1.2rem;
+        }
+
+        .title {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic-container img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 3px solid var(--cyber-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            object-fit: cover;
+            filter: grayscale(40%) contrast(1.2); /* Efecto sci-fi */
+        }
+
+        /* Botones Tech */
+        .btn-tech {
+            display: inline-block;
+            padding: 10px 25px;
+            margin-right: 15px;
+            border: 1px solid var(--cyber-blue);
+            color: var(--cyber-blue);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .btn-tech:hover {
+            background: var(--cyber-blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--cyber-blue);
+        }
+
+        /* Proyectos: Estilo Tarjeta de Datos */
+        .proyectos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .proyecto-card {
+            background: #0f0f0f;
+            border: 1px solid #333;
+            padding: 20px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proyecto-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--terminal-green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .proyecto-card:hover {
+            border-color: var(--terminal-green);
+            transform: translateY(-5px);
+        }
+
+        .proyecto-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .proyecto-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .proyecto-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* Habilidades Grid */
+        .herramientas-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border: 1px solid #333;
+            border-radius: 4px;
+        }
+
+        .tool-item i {
+            color: var(--cyber-blue);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px;
+            background: #000;
+            border-top: 1px solid #333;
+        }
+
+        .social-links a {
+            color: #fff;
+            margin: 0 15px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--terminal-green);
+            text-shadow: 0 0 10px var(--terminal-green);
+        }
+
+        /* Animación Cursor */
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .hero-content-wrapper {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .nav-menu ul {
+                flex-direction: column;
+                background: #000;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                display: none;
+                padding: 20px;
+                border-bottom: 1px solid var(--cyber-blue);
+            }
+            .nav-menu.nav-open ul {
+                display: flex;
+            }
+            #menu-toggle {
+                display: block; /* Asegúrate de estilizar el botón toggle si falta */
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 2rem;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                cursor: pointer;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="header">
-        <button id="menu-toggle" aria-label="Abrir Menú"><i class="fas fa-bars"></i></button>
+    <div id="boot-overlay">
+        <div id="terminal-output" class="terminal-text"></div>
+        <button id="start-btn">> ACCEDER AL SISTEMA</button>
+    </div>
 
-        <nav class="nav-menu">
-            <ul>
-                <li><a href="#hero">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#herramientas">Habilidades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><button id="theme-toggle" aria-label="Toggle Dark Mode"><i class="fas fa-lightbulb"></i></button></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="main-interface" class="hidden">
+        
+        <header class="header">
+            <button id="menu-toggle" aria-label="Abrir Menú" style="display:none;"><i class="fas fa-bars"></i></button>
 
-    <main>
-        
-        <section id="hero">
-            <div class="hero-content-wrapper">
-                <div class="hero-text-content">
-                    <p class="greeting">Hola, soy</p>
-                    <h1>Emiliano Aguilar</h1>
-                    <p class="title">Estudiante de Ingeniería en Tecnologías de Cómputo y Telecomunicaciones</p>
-                    
-                    <div class="inline-social-icons">
-                        <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="MAILTO:foboseaa@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                    
-                    <div class="hero-buttons">
-                        <a href="extra files/cv.pdf" download class="btn-primary">Descargar CV <i class="fas fa-download"></i></a>
-                        <a href="#contacto" class="btn-secondary">Contactar <i class="fas fa-paper-plane"></i></a>
-                    </div>
-                </div>
-                <div class="profile-pic-container">
-                    <img src="images/perfil.jpeg" alt="Foto de Perfil"> 
-                </div>
-            </div>
-        </section>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#hero">:: Inicio ::</a></li>
+                    <li><a href="#sobre-mi">/ Datos_Usuario</a></li>
+                    <li><a href="#proyectos">/ Misiones</a></li>
+                    <li><a href="#herramientas">/ Arsenal</a></li>
+                    <li><a href="#contacto">/ Enlace</a></li>
+                </ul>
+            </nav>
+        </header>
 
-
-        
-        <section id="sobre-mi" class="section">
-            <h2>Sobre Mí</h2>
-            <p>Conóceme mejor</p>
-            <p>Soy un **Estudiante de Ingeniería en Tecnologías de Cómputo y Telecomunicaciones** con una profunda pasión por la intersección entre el software, el hardware y la comunicación de datos. Mi objetivo es desarrollar soluciones tecnológicas innovadoras y eficientes que aborden los desafíos del mundo real.</p>
-            
-            <p>Además de mis estudios, me dedico activamente a la **divulgación de ciencia y tecnología** en redes sociales, donde he tenido el privilegio de construir y nutrir una comunidad de **más de 300K** seguidores. Creo firmemente en la importancia de compartir el conocimiento y fomentar el interés en STEM.</p>
-            
-            <p>Estoy siempre en busca de nuevas oportunidades para aprender y aplicar mis habilidades. Me entusiasma colaborar en **proyectos de Código Abierto (Open Source)**, donde puedo contribuir al desarrollo colectivo y explorar nuevas tecnologías en un entorno colaborativo.</p>
-        </section>
-        
-        
-        <section id="proyectos" class="section proyectos-grid">
-            <h2>Proyectos Destacados</h2>
-            <div class="proyecto-card">
-                <img src="images/cms.jpeg" alt="Detector CMS del CERN"> 
-                <h3>Análisis de Datos: Reconstrucción de Muón (CMS)</h3>
-                <p>Reconstrucción de masa invariante de un muón utilizando base de datos del CMS del CERN, aplicando la herramienta ROOT y Python para el procesamiento y visualización de resultados. (Tecnologías: Python, ROOT, Física).</p>
-                <div class="links">
-                    <a href="https://colab.research.google.com/drive/1OVwEsXx-r4NP-IgMIRVGNl2yb4NwHDlD?usp=sharing" target="_blank">Abrir Colab <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-
-            <div class="proyecto-card">
-                <img src="images/logogithub.jpg" alt="Logo de GitHub"> 
-                <h3>Portafolio Completo y Código Fuente</h3>
-                <p>Explora todos mis proyectos, repositorios y contribuciones, desde desarrollo web y bases de datos hasta scripts de automatización. Todo el código fuente está disponible en mi GitHub.</p>
-                <div class="links">
-                    <a href="https://github.com/Fastreaa" target="_blank">Ver en GitHub <i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            
-        </section>
-      
-        <section id="herramientas" class="section">
-            <h2>Habilidades y Tecnologías</h2>
-            <div class="herramientas-grid">
-                
-                <div class="tool-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-                <div class="tool-item"><i class="fas fa-database"></i><span>MySQL</span></div>
-                <div class="tool-item"><i class="fas fa-database"></i><span>MongoDB</span></div>
-                <div class="tool-item"><i class="fab fa-docker"></i><span>Docker</span></div>
-                <div class="tool-item"><i class="fas fa-code"></i><span>C</span></div>
-                <div class="tool-item"><i class="fab fa-java"></i><span>Java</span></div>
-                <div class="tool-item"><i class="fab fa-python"></i><span>Python</span></div>
-                <div class="tool-item"><i class="fab fa-html5"></i><span>HTML</span></div>
-                <div class="tool-item"><i class="fas fa-chart-bar"></i><span>ROOT CERN</span></div>
-                <div class="tool-item"><i class="fas fa-network-wired"></i><span>Wireshark</span></div>
-                <div class="tool-item"><i class="fas fa-server"></i><span>GNS3</span></div>
-                <div class="tool-item"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer id="contacto" class="footer">
-        <p>Conéctate conmigo:</p>
-        <div class="social-links">
-            <a href="MAILTO:tu_email@ejemplo.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.facebook.com/share/17n9pHAmy9/?mibextid=wwXIfr" target="_blank" title="Divulgación Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/emilianoagl?igsh=MTBuM2NqNDNuZHZiaA%3D%3D&utm_source=qr" target="_blank" title="Instagram Personal"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <p>&copy; 2025 Emiliano Aguilar. Todos los derechos reservados.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleButton = document.getElementById('theme-toggle');
-            const menuToggleButton = document.getElementById('menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            const icon = toggleButton.querySelector('i');
-            const body = document.body;
-
-            // 1. Lógica del Modo Oscuro
-            const applyTheme = (isDark) => {
-                if (isDark) {
-                    body.classList.add('dark-mode');
-                    icon.classList.remove('fa-lightbulb'); 
-                    icon.classList.add('fa-circle-half-stroke'); 
-                } else {
-                    body.classList.remove('dark-mode');
-                    icon.classList.remove('fa-circle-half-stroke'); 
-                    icon.classList.add('fa-lightbulb'); 
-                }
-            };
-
-            const savedTheme = localStorage.getItem('theme');
-            applyTheme(savedTheme === 'dark');
-
-            toggleButton.addEventListener('click', () => {
-                const isDark = body.classList.contains('dark-mode');
-                if (isDark) {
-                    applyTheme(false);
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    applyTheme(true);
-                    localStorage.setItem('theme', 'dark');
-                }
-            });
+        <main>
             
-            // 2. Lógica del Menú de Hamburguesa
-            menuToggleButton.addEventListener('click', () => {
-                navMenu.classList.toggle('nav-open');
-            });
+            <section id="hero">
+                <div class="hero-content-wrapper">
+                    <div class="hero-text-content">
+                        <p class="greeting">> ESTADO: CONECTADO</p>
+                        <h1>Emiliano Aguilar</h1>
+                        <p class="title">[Ingeniero en Tecnologías de Cómputo y Telecomunicaciones]</p>
+                        
+                        <p style="margin-bottom: 20px; max-width: 600px; color: #ccc;">
+                            Bienvenido al nodo. Aquí convergen la lógica del código, la infraestructura de redes y la curiosidad científica.
+                        </p>
 
-            // Cerrar menú al hacer clic en un enlace (solo en móvil)
-            document.querySelectorAll('.nav-menu ul li a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth <= 992) {
-                        navMenu.classList.remove('nav-open');
+                        <div class="hero-buttons">
+                            <a href="extra files/cv.pdf" download class="btn-tech">
+                                <i class="fas fa-download"></i> Descargar Data (CV)
+                            </a>
+                            <a href="#contacto" class="btn-tech">
+                                <i class="fas fa-satellite-dish"></i> Establecer Enlace
+                            </a>
+                        </div>
+                    </div>
+                    <div class="profile-pic-container">
+                        <img src="images/perfil.jpeg" alt="Foto de Perfil"> 
+                    </div>
+                </div>
+            </section>
+
+            <section id="sobre-mi" class="section">
+                <h2>> /root/Sobre_Mi.txt</h2>
+                <div style="background: rgba(255,255,255,0.02); padding: 20px; border-left: 3px solid var(--terminal-green);">
+                    <p style="margin-bottom: 15px;">
+                        <span style="color:var(--terminal-green);">root@emiliano:~$</span> cat descripcion.txt
+                    </p>
+                    <p>Soy un **Estudiante de Ingeniería** apasionado por la arquitectura invisible que sostiene nuestro mundo digital. Mi especialidad es la intersección entre el <strong>Software</strong> (la lógica) y el <strong>Hardware/Redes</strong> (la infraestructura).</p>
+                    <br>
+                    <p>Más allá del código, busco respuestas en la ciencia y la filosofía. Como divulgador, he creado una comunidad de <strong>+300K mentes curiosas</strong>, compartiendo la idea de que entender la tecnología es entender el futuro.</p>
+                </div>
+            </section>
+            
+            <section id="proyectos" class="section proyectos-grid">
+                <h2>> Ejecutando Proyectos...</h2>
+                
+                <div class="proyecto-card">
+                    <img src="images/cms.jpeg" alt="Detector CMS"> 
+                    <h3>Análisis de Muón (CERN)</h3>
+                    <p style="font-size: 0.9rem; color: #aaa;">Protocolo: Python + ROOT</p>
+                    <p style="margin-top: 10px;">Reconstrucción de masa invariante utilizando bases de datos reales del CMS. Visualización de física de partículas de alto nivel.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="#" class="btn-tech" style="font-size: 0.8rem;">Ver Código</a>
+                    </div>
+                </div>
+
+                <div class="proyecto-card">
+                    <img src="images/logogithub.jpg" alt="GitHub"> 
+                    <h3>Repositorio Central</h3>
+                    <p style="font-size: 0.9rem; color: #aaa;">Acceso: Público</p>
+                    <p style="margin-top: 10px;">Acceso directo a todos los scripts de automatización, configuraciones de red y desarrollos web.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="https://github.com/Fastreaa" class="btn-tech" style="font-size: 0.8rem;">git pull origin</a>
+                    </div>
+                </div>
+            </section>
+          
+            <section id="herramientas" class="section">
+                <h2>> System_Status: Habilidades</h2>
+                <div class="herramientas-grid">
+                    <div class="tool-item"><i class="fab fa-linux"></i><span>Linux Kernel</span></div>
+                    <div class="tool-item"><i class="fas fa-network-wired"></i><span>Redes/Wireshark</span></div>
+                    <div class="tool-item"><i class="fab fa-java"></i><span>Java Eco</span></div>
+                    <div class="tool-item"><i class="fab fa-python"></i><span>Python Scripting</span></div>
+                    <div class="tool-item"><i class="fas fa-database"></i><span>MySQL / Mongo</span></div>
+                    <div class="tool-item"><i class="fab fa-docker"></i><span>Docker Containers</span></div>
+                    <div class="tool-item"><i class="fas fa-atom"></i><span>Física Computacional</span></div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer id="contacto" class="footer">
+            <p style="color: var(--cyber-blue); margin-bottom: 20px;">> FIN DE TRANSMISIÓN. ¿RESPONDER?</p>
+            <div class="social-links">
+                <a href="MAILTO:foboseaa@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Fastreaa"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/emilianoagl"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.8rem; color: #555;">
+                &copy; 2025 Sistema Emiliano Aguilar. Versión 2.0
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // TEXTO DE LA HISTORIA (Puedes editar esto)
+        const terminalText = [
+            "Iniciando secuencia de arranque...",
+            "Cargando módulos de memoria...",
+            "Detectando usuario: INVITADO",
+            "Resolviendo dirección IP...",
+            "Conexión establecida con el nodo: FASTREAA",
+            "Acceso concedido."
+        ];
+
+        const speed = 50; // Velocidad de escritura
+        let lineIndex = 0;
+        let charIndex = 0;
+        const outputDiv = document.getElementById('terminal-output');
+        const startBtn = document.getElementById('start-btn');
+        const overlay = document.getElementById('boot-overlay');
+        const mainInterface = document.getElementById('main-interface');
+
+        // Función de Efecto Máquina de Escribir
+        function typeWriter() {
+            if (lineIndex < terminalText.length) {
+                if (charIndex < terminalText[lineIndex].length) {
+                    // Si es el primer caracter de la línea, agregar salto de línea
+                    if (charIndex === 0 && lineIndex > 0) {
+                        outputDiv.innerHTML += "<br>"; 
                     }
-                });
-            });
+                    outputDiv.innerHTML += terminalText[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    // Fin de la línea actual
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 300); // Pausa entre líneas
+                }
+            } else {
+                // Fin de todo el texto, mostrar botón
+                startBtn.style.opacity = '1';
+            }
+        }
 
-        });
-    </script>
+        // Iniciar la animación al cargar
+        window.onload = typeWriter;
+
+        // Acción al pulsar el botón
+        startBtn.addEventListener('click', () => {
+            overlay.style.transition = 'opacity 1s ease';
+            overlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                mainInterface.classList.remove('hidden');
+                // Pequeña animación de entrada para el main
+                mainInterface.style.animation = 'fadeIn 1s forwards';
+            }, 1000);
+        });
+
+        // Toggle del menú móvil
+        const menuBtn = document.getElementById('menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        // Comprobamos si el botón existe (por si estás en desktop)
+        if(menuBtn){
+            menuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('nav-open');
+                // Cambiar estilo de display si es necesario en CSS móvil
+                if(navMenu.classList.contains('nav-open')){
+                    navMenu.querySelector('ul').style.display = 'flex';
+                } else {
+                    navMenu.querySelector('ul').style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
