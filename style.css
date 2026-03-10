@@ -1,116 +1,109 @@
 :root {
-    --bg-deep: #05070a;
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --accent: #00d4ff;
-    --accent-glow: rgba(0, 212, 255, 0.3);
-    --text-high: #ffffff;
-    --text-low: #a0a0a0;
+    --bg: #0a0a0a;
+    --accent: #e0ff00; /* Amarillo voltio para máximo contraste */
+    --text: #ffffff;
+    --text-dim: #555;
+    --font-display: 'Syncopate', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 html { scroll-behavior: smooth; }
 
-body {
-    background-color: var(--bg-deep);
-    color: var(--text-high);
-    font-family: 'Inter', sans-serif;
+body { 
+    background: var(--bg); 
+    color: var(--text); 
+    font-family: var(--font-sans); 
     overflow-x: hidden;
 }
 
-.stars-container {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 50%, #0a1018 0%, #030508 100%);
-    z-index: -1;
+/* --- CURSOR CUSTOM --- */
+#custom-cursor {
+    width: 15px; height: 15px; background: var(--accent); border-radius: 50%;
+    position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference;
+    transition: transform 0.1s ease-out;
 }
 
-/* NAVEGACIÓN */
-header {
-    padding: 20px 5%;
-    position: fixed;
-    width: 100%;
-    top: 0; z-index: 100;
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border);
+/* --- NAV --- */
+.floating-nav {
+    position: fixed; top: 40px; width: 100%; display: flex; justify-content: space-between;
+    padding: 0 5%; z-index: 1000; mix-blend-mode: difference;
+}
+.nav-logo { font-family: var(--font-display); color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.5rem; }
+.nav-logo span { color: var(--accent); }
+.nav-links a { color: var(--text); text-decoration: none; font-size: 0.65rem; letter-spacing: 3px; margin-left: 35px; opacity: 0.5; transition: 0.3s; }
+.nav-links a:hover { opacity: 1; color: var(--accent); }
+
+/* --- HERO BRUTALISTA --- */
+.hero-brutal {
+    height: 100vh; display: flex; align-items: center; justify-content: center; position: relative;
+}
+.hero-title-wrapper { position: relative; z-index: 2; pointer-events: none; }
+.main-title { 
+    font-family: var(--font-display); font-size: 14vw; line-height: 0.85; font-weight: 700;
+    letter-spacing: -0.8vw; text-align: center;
+}
+.hero-sub { margin-top: 30px; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 5px; color: var(--text-dim); text-align: center; }
+.hollow-text { 
+    -webkit-text-stroke: 1px var(--text-dim); color: transparent; font-size: 2.5rem; margin-top: 15px;
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+.hero-image-frame {
+    position: absolute; width: 320px; height: 450px; right: 8%; bottom: 10%;
+    overflow: hidden; filter: grayscale(1); transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid var(--text-dim);
 }
+.hero-image-frame:hover { filter: grayscale(0); transform: scale(1.02); border-color: var(--accent); }
+.hero-image-frame img { width: 100%; height: 100%; object-fit: cover; }
+.overlay-text { position: absolute; bottom: 20px; left: -40px; transform: rotate(-90deg); font-size: 0.6rem; letter-spacing: 2px; color: var(--accent); }
 
-.logo { font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; }
-.logo span { color: var(--accent); }
-.nav-links { display: flex; list-style: none; gap: 30px; }
-.nav-links a { text-decoration: none; color: var(--text-low); font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
-.nav-links a:hover { color: var(--accent); }
+/* --- TRABAJO SELECCIONADO --- */
+.work-gallery { padding: 150px 5%; }
+.gallery-header { margin-bottom: 100px; display: flex; align-items: center; gap: 30px; }
+.gallery-header h2 { font-family: var(--font-display); font-size: 2.5rem; }
+.header-line { flex: 1; height: 1px; background: var(--text-dim); }
 
-/* HERO */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 0 10%;
-    max-width: 1400px;
-    margin: 0 auto;
-    gap: 50px;
+.project-item { display: flex; align-items: center; gap: 80px; margin-bottom: 200px; opacity: 0; transform: translateY(50px); transition: 1s all ease; }
+.project-item.visible { opacity: 1; transform: translateY(0); }
+.project-item.rev { flex-direction: row-reverse; }
+
+.project-info { flex: 1; }
+.project-info h3 { font-family: var(--font-display); font-size: 4.5rem; line-height: 0.85; margin-bottom: 30px; }
+.project-info p { color: var(--text-dim); font-size: 1.1rem; line-height: 1.6; max-width: 450px; margin-bottom: 30px; }
+.project-link { color: var(--accent); text-decoration: none; font-weight: 800; font-size: 0.8rem; letter-spacing: 2px; }
+
+.project-preview { flex: 1.4; height: 600px; border-radius: 2px; position: relative; overflow: hidden; background: #111; border: 1px solid #222; }
+.shopify-bg { background: linear-gradient(135deg, #002e24 0%, #000 100%); }
+.science-bg { background: linear-gradient(135deg, #160030 0%, #000 100%); }
+
+/* --- MARQUEE --- */
+.arsenal-marquee {
+    padding: 120px 0; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a;
+    display: flex; overflow: hidden; white-space: nowrap;
 }
-
-.hero-content { flex: 1; }
-.badge { background: var(--glass); border: 1px solid var(--glass-border); padding: 6px 15px; border-radius: 20px; font-size: 0.7rem; color: var(--accent); letter-spacing: 1px; }
-h1 { font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin: 25px 0; }
-.gradient-text { background: linear-gradient(90deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.description { color: var(--text-low); font-size: 1.1rem; margin-bottom: 35px; max-width: 500px; }
-
-.hero-actions { display: flex; gap: 15px; }
-.btn-primary { background: var(--accent); color: #000; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: bold; box-shadow: 0 0 25px var(--accent-glow); transition: 0.4s; }
-.btn-secondary { border: 1px solid var(--glass-border); color: #fff; padding: 15px 30px; border-radius: 12px; text-decoration: none; transition: 0.4s; }
-.btn-secondary:hover { background: var(--glass); }
-
-.profile-orb {
-    width: 380px; height: 380px;
-    border-radius: 50%; padding: 8px;
-    background: linear-gradient(45deg, var(--accent), transparent);
-    box-shadow: 0 0 60px var(--accent-glow);
+.marquee-content {
+    display: flex; gap: 60px; font-family: var(--font-display); font-size: 6vw;
+    color: #151515; animation: scroll 25s linear infinite; padding-right: 60px;
 }
-.profile-orb img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.marquee-content span:hover { color: var(--accent); transition: 0.3s; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* ARSENAL TOOLS */
-.tools-section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
-.tools-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; padding: 40px; border-radius: 30px; }
-.tool-group h4 { color: var(--accent); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; }
-.tool-icons { display: flex; gap: 20px; flex-wrap: wrap; }
-.tool-item { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; text-align: center; width: 85px; transition: 0.3s; }
-.tool-item i { font-size: 1.5rem; margin-bottom: 8px; display: block; }
-.tool-item span { font-size: 0.6rem; color: var(--text-low); }
-.tool-item:hover { background: var(--glass); transform: translateY(-5px); border: 1px solid var(--accent); }
+/* --- FOOTER --- */
+.footer-wrap { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.footer-title { font-family: var(--font-display); font-size: 7vw; line-height: 0.8; text-align: center; margin-bottom: 60px; }
+.cta-huge { 
+    font-size: 4rem; color: var(--accent); text-decoration: none; font-weight: 800;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.cta-huge:hover { letter-spacing: 15px; text-shadow: 0 0 30px var(--accent-glow); }
+.footer-bottom { position: absolute; bottom: 40px; width: 90%; display: flex; justify-content: space-between; color: var(--text-dim); font-size: 0.6rem; letter-spacing: 2px; }
+.social-small a { color: var(--text-dim); text-decoration: none; margin-left: 20px; }
 
-/* BENTO GRID */
-.proyectos-section { padding: 80px 10%; max-width: 1200px; margin: 0 auto; }
-.section-title { font-size: 2rem; margin-bottom: 40px; }
-.bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 240px; gap: 20px; }
-.bento-item { background: var(--glass); border: 1px solid var(--glass-border); padding: 30px; border-radius: 24px; display: flex; flex-direction: column; justify-content: flex-end; transition: 0.4s; }
-.bento-item:hover { border-color: var(--accent); background: rgba(255,255,255,0.08); transform: scale(1.02); }
-.tall { grid-row: span 2; }
-.wide { grid-column: span 2; }
-.bento-header { margin-bottom: auto; display: flex; justify-content: space-between; font-size: 1.4rem; color: var(--accent); }
-.tag { font-size: 0.6rem; color: var(--text-low); text-transform: uppercase; }
-
-/* FOOTER */
-footer { padding: 50px 10%; text-align: center; }
-.footer-content { padding: 40px; border-radius: 24px; }
-.social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 25px; }
-.social-icons a { color: var(--text-high); font-size: 1.5rem; transition: 0.3s; }
-.social-icons a:hover { color: var(--accent); transform: scale(1.2); }
-
-@media (max-width: 992px) {
-    .hero { flex-direction: column-reverse; text-align: center; height: auto; padding-top: 150px; }
-    h1 { font-size: 3rem; }
-    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-    .wide, .tall { grid-column: span 1; grid-row: span 1; }
-    .profile-orb { width: 280px; height: 280px; }
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .main-title { font-size: 20vw; }
+    .project-item, .project-item.rev { flex-direction: column; gap: 40px; text-align: center; }
+    .project-info h3 { font-size: 3rem; }
+    .project-preview { width: 100%; height: 400px; }
+    .project-info p { margin: 0 auto 30px; }
 }
