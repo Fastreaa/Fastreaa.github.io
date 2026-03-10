@@ -3,136 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emiliano Aguilar | Portafolio Interactivo</title>
+    <title>Emiliano Aguilar | Portafolio</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- ESTILOS UNIFICADOS (Aesthetic-Tech Noir) --- */
+        :root {
+            --bg: #030508;
+            --accent: #00f3ff;
+            --accent-glow: rgba(0, 243, 255, 0.3);
+            --text: #ffffff;
+            --text-dim: #b0b0b0;
+            --glass: rgba(20, 25, 35, 0.8);
+            --font-tech: 'Share Tech Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%;
+            backdrop-filter: blur(15px);
+            background: rgba(3, 5, 8, 0.9);
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--accent-glow);
+            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo { font-family: var(--font-tech); font-size: 1.4rem; letter-spacing: 2px; }
+        .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav a { 
+            text-decoration: none; color: var(--text-dim); 
+            font-family: var(--font-tech); font-size: 0.8rem; 
+            text-transform: uppercase; transition: 0.3s;
+        }
+        nav a:hover { color: var(--accent); text-shadow: 0 0 8px var(--accent); }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 0 10%; gap: 50px; margin-top: 50px;
+        }
+
+        .hero-content { flex: 1.5; }
+        .status { font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; }
+        
+        h1 { font-family: var(--font-tech); font-size: 4rem; line-height: 1; margin-bottom: 10px; }
+        .sub { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 25px; font-family: var(--font-tech); }
+        .welcome { max-width: 550px; margin-bottom: 35px; color: #ddd; }
+
+        .btn-group { display: flex; gap: 20px; }
+        .btn {
+            text-decoration: none; padding: 12px 25px; border-radius: 4px;
+            font-family: var(--font-tech); font-weight: bold; transition: 0.3s;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .primary { background: var(--accent); color: var(--bg); box-shadow: 0 0 15px var(--accent-glow); }
+        .primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px var(--accent); }
+        .secondary { border: 1px solid var(--accent); color: var(--accent); }
+        .secondary:hover { background: var(--accent-glow); }
+
+        .hero-visual { flex: 1; display: flex; justify-content: center; }
+        .orb {
+            width: 300px; height: 300px; border-radius: 50%; padding: 5px;
+            background: linear-gradient(45deg, var(--accent), transparent);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+        .orb img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+        /* --- SECCIONES --- */
+        section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
+        h2 { font-family: var(--font-tech); color: var(--accent); margin-bottom: 40px; font-size: 1.8rem; }
+
+        .card { 
+            background: var(--glass); padding: 35px; border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid var(--accent);
+        }
+
+        /* --- PROYECTOS --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .p-card { 
+            background: var(--glass); border-radius: 12px; overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+        }
+        .p-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .p-img { height: 180px; width: 100%; object-fit: cover; }
+        .p-body { padding: 25px; }
+        .p-body h3 { font-family: var(--font-tech); margin-bottom: 10px; }
+        .p-meta { color: var(--accent); font-family: var(--font-tech); font-size: 0.8rem; margin-bottom: 15px; }
+        .p-link { 
+            display: block; text-align: center; text-decoration: none; 
+            color: var(--accent); border: 1px solid var(--accent); 
+            padding: 8px; border-radius: 4px; font-family: var(--font-tech);
+        }
+        .p-link:hover { background: var(--accent); color: var(--bg); }
+
+        /* --- ARSENAL --- */
+        .a-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+        .a-item { 
+            background: rgba(255,255,255,0.03); padding: 15px 25px; border-radius: 8px;
+            display: flex; align-items: center; gap: 10px; font-family: var(--font-tech);
+        }
+        .a-item i { color: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 60px 10%; border-top: 1px solid var(--accent-glow); }
+        .social { display: flex; justify-content: center; gap: 25px; margin: 25px 0; }
+        .social a { color: var(--text-dim); font-size: 1.5rem; transition: 0.3s; }
+        .social a:hover { color: var(--accent); transform: scale(1.2); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            header { flex-direction: column; gap: 15px; }
+            .hero { flex-direction: column-reverse; text-align: center; height: auto; padding-top: 120px; }
+            h1 { font-size: 2.5rem; }
+            .orb { width: 200px; height: 200px; }
+            .btn-group { justify-content: center; flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
 
-    <canvas id="scifi-network"></canvas>
-
-    <header class="header_scifi">
-        <nav class="nav_scifi">
-            <div class="logo">EA<span class="logo_sys">_SYSTEM</span></div>
-            <ul class="nav_links">
-                <li><a href="#hero">:: Inicio ::</a></li>
-                <li><a href="#sobre-mi">/ Datos_Usuario</a></li>
-                <li><a href="#proyectos">/ Misiones</a></li>
-                <li><a href="#herramientas">/ Arsenal</a></li>
-                <li><a href="#contacto">/ Enlace</a></li>
+    <header>
+        <div class="logo">EA<span>_SYSTEM</span></div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#sobre-mi">Usuario</a></li>
+                <li><a href="#proyectos">Misiones</a></li>
+                <li><a href="#herramientas">Arsenal</a></li>
+                <li><a href="#contacto">Enlace</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero" class="hero_scifi">
-            <div class="hero_layout">
-                <div class="hero_text_content">
-                    <p class="greeting_scifi">> ESTADO: CONECTADO</p>
-                    <h1 class="main_name_scifi">Emiliano Aguilar</h1>
-                    <p class="hero_title_scifi">[Ingeniero en Tecnologías de Cómputo y Telecomunicaciones]</p>
-                    
-                    <p class="hero_welcome_text_scifi">
-                        Bienvenido al nodo. Aquí convergen la lógica del código, la infraestructura de redes y la curiosidad científica.
-                    </p>
-
-                    <div class="hero_buttons_scifi">
-                        <a href="extra files/cv.pdf" download class="btn_scifi btn_primary_scifi">
-                            <i class="fas fa-download"></i> Descargar Data (CV)
-                        </a>
-                        <a href="#contacto" class="btn_scifi btn_secondary_scifi">
-                            <i class="fas fa-satellite-dish"></i> Establecer Enlace
-                        </a>
-                    </div>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <p class="status">> ESTADO: CONECTADO</p>
+                <h1>Emiliano Aguilar</h1>
+                <p class="sub">[Ingeniero en Tecnologías de Cómputo y Telecomunicaciones]</p>
+                <p class="welcome">Bienvenido al nodo. Aquí convergen la lógica del código, la infraestructura de redes y la curiosidad científica.</p>
+                
+                <div class="btn-group">
+                    <a href="extra files/cv.pdf" download class="btn primary">
+                        <i class="fas fa-download"></i> DESCARGAR DATA (CV)
+                    </a>
+                    <a href="#contacto" class="btn secondary">
+                        <i class="fas fa-satellite-dish"></i> ESTABLECER ENLACE
+                    </a>
                 </div>
-                <div class="hero_visual_content">
-                    <div class="profile_orb_scifi">
-                        <img src="images/perfil.jpeg" alt="Foto de Perfil"> 
-                    </div>
+            </div>
+            <div class="hero-visual">
+                <div class="orb">
+                    <img src="images/perfil.jpeg" alt="Perfil">
                 </div>
             </div>
         </section>
 
-        <section id="sobre-mi" class="section_scifi sobre_mi_section">
-            <h2 class="section_title_scifi">> /root/Sobre_Mi.txt</h2>
-            <div class="sobre_mi_card glass_scifi">
-                <p>
-                    Soy un <strong>Estudiante de Ingeniería</strong> apasionado por la arquitectura invisible que sostiene nuestro mundo digital. Mi especialidad es la intersección entre el <strong>Software</strong> (la lógica) y el <strong>Hardware/Redes</strong> (la infraestructura).
-                </p>
+        <section id="sobre-mi">
+            <h2>> /root/Sobre_Mi.txt</h2>
+            <div class="card">
+                <p>Soy un <strong>Estudiante de Ingeniería</strong> apasionado por la arquitectura invisible que sostiene nuestro mundo digital. Mi especialidad es la intersección entre el <strong>Software</strong> y el <strong>Hardware/Redes</strong>.</p>
                 <br>
-                <p>
-                    Más allá del código, busco respuestas en la ciencia y la filosofía. Como divulgador, he creado una comunidad de <strong>+300K mentes curiosas</strong>, compartiendo la idea de que entender la tecnología es entender el futuro.
-                </p>
+                <p>Como divulgador, he creado una comunidad de <strong>+300K mentes curiosas</strong>, compartiendo la idea de que entender la tecnología es entender el futuro.</p>
             </div>
         </section>
-        
-        <section id="proyectos" class="section_scifi proyectos_section">
-            <h2 class="section_title_scifi">> Ejecutando Proyectos...</h2>
-            
-            <div class="proyectos_grid_scifi">
-                <div class="proyecto_card_scifi glass_scifi">
-                    <div class="proyecto_header_scifi">
-                        <img src="images/cms.jpeg" alt="Detector CMS"> 
-                    </div>
-                    <div class="proyecto_content_scifi">
+
+        <section id="proyectos">
+            <h2>> Ejecutando Proyectos...</h2>
+            <div class="grid">
+                <div class="p-card">
+                    <img src="images/cms.jpeg" class="p-img">
+                    <div class="p-body">
                         <h3>Análisis de Muón (CERN)</h3>
-                        <p class="proyecto_meta">Protocolo: Python + ROOT</p>
-                        <p class="proyecto_desc_scifi">Reconstrucción de masa invariante utilizando bases de datos reales del CMS. Visualización de física de partículas de alto nivel.</p>
-                        <div class="proyecto_links_scifi">
-                            <a href="https://colab.research.google.com/drive/1OVwEsXx-r4NP-IgMIRVGNl2yb4NwHDlD?usp=sharing" target="_blank" class="btn_project_scifi">Ver Código <i class="fas fa-external-link-alt"></i></a>
-                        </div>
+                        <p class="p-meta">Python + ROOT</p>
+                        <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 20px;">Reconstrucción de masa invariante utilizando bases de datos reales del CMS.</p>
+                        <a href="https://colab.research.google.com/drive/1OVwEsXx-r4NP-IgMIRVGNl2yb4NwHDlD?usp=sharing" target="_blank" class="p-link">Ver Código</a>
                     </div>
                 </div>
-
-                <div class="proyecto_card_scifi glass_scifi">
-                    <div class="proyecto_header_scifi">
-                        <img src="images/logogithub.jpg" alt="GitHub"> 
-                    </div>
-                    <div class="proyecto_content_scifi">
+                <div class="p-card">
+                    <img src="images/logogithub.jpg" class="p-img">
+                    <div class="p-body">
                         <h3>Repositorio Central</h3>
-                        <p class="proyecto_meta">Acceso: Público</p>
-                        <p class="proyecto_desc_scifi">Acceso directo a todos los proyectos, scripts de automatización, configuraciones de red y desarrollos web.</p>
-                        <div class="proyecto_links_scifi">
-                            <a href="https://github.com/Fastreaa" target="_blank" class="btn_project_scifi">git pull origin</a>
-                        </div>
+                        <p class="p-meta">Acceso: Público</p>
+                        <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 20px;">Acceso directo a todos los proyectos, scripts y configuraciones de red.</p>
+                        <a href="https://github.com/Fastreaa" target="_blank" class="p-link">git pull origin</a>
                     </div>
                 </div>
             </div>
         </section>
-      
-        <section id="herramientas" class="section_scifi herramientas_section">
-            <h2 class="section_title_scifi">> System_Status: Habilidades</h2>
-            <div class="herramientas_container_scifi glass_scifi">
-                <div class="tool-item-scifi"><i class="fab fa-linux"></i><span>Linux</span></div>
-                <div class="tool-item-scifi"><i class="fas fa-database"></i><span>MySQL</span></div>
-                <div class="tool-item-scifi"><i class="fas fa-database"></i><span>MongoDB</span></div>
-                <div class="tool-item-scifi"><i class="fab fa-docker"></i><span>Docker</span></div>
-                <div class="tool-item-scifi"><i class="fas fa-code"></i><span>C</span></div>
-                <div class="tool-item-scifi"><i class="fab fa-java"></i><span>Java</span></div>
-                <div class="tool-item-scifi"><i class="fab fa-python"></i><span>Python</span></div>
-                <div class="tool-item-scifi"><i class="fab fa-html5"></i><span>HTML</span></div>
-                <div class="tool-item-scifi"><i class="fas fa-chart-bar"></i><span>ROOT CERN</span></div>
-                <div class="tool-item-scifi"><i class="fas fa-network-wired"></i><span>Wireshark</span></div>
-                <div class="tool-item-scifi"><i class="fas fa-server"></i><span>GNS3</span></div>
-                <div class="tool-item-scifi"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
+
+        <section id="herramientas">
+            <h2>> System_Status: Arsenal</h2>
+            <div class="a-grid">
+                <div class="a-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+                <div class="a-item"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="a-item"><i class="fab fa-java"></i><span>Java</span></div>
+                <div class="a-item"><i class="fas fa-server"></i><span>GNS3</span></div>
+                <div class="a-item"><i class="fab fa-docker"></i><span>Docker</span></div>
+                <div class="a-item"><i class="fas fa-database"></i><span>MongoDB</span></div>
+                <div class="a-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                <div class="a-item"><i class="fab fa-shopify"></i><span>Shopify</span></div>
             </div>
         </section>
-
     </main>
 
-    <footer id="contacto" class="footer_scifi">
-        <p class="footer_status">> FIN DE TRANSMISIÓN. ¿RESPONDER?</p>
-        <div class="social_links_scifi">
-            <a href="mailto:foboseaa@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/emilianoagl?igsh=MTBuM2NqNDNuZHZiaA%3D%3D&utm_source=qr" target="_blank" title="Instagram Personal"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/share/17n9pHAmy9/?mibextid=wwXIfr" target="_blank" title="Divulgación Facebook"><i class="fab fa-facebook-f"></i></a>
+    <footer id="contacto">
+        <p style="color: var(--accent); font-family: var(--font-tech);">> FIN DE TRANSMISIÓN</p>
+        <div class="social">
+            <a href="mailto:foboseaa@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Fastreaa" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/emilianoagl"><i class="fab fa-instagram"></i></a>
         </div>
-        <p class="copy_scifi">&copy; 2025 EA_SYSTEM. Todos los derechos reservados.</p>
+        <p style="font-size: 0.7rem; color: #555;">&copy; 2026 EA_SYSTEM // DIGITAL ARCHITECT</p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
