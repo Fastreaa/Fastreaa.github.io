@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emiliano Aguilar | Portafolio</title>
+    <title>Emiliano Aguilar | Digital Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;800&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* --- ESTILOS UNIFICADOS (Aesthetic-Tech Noir) --- */
         :root {
-            --bg: #030508;
+            --bg: #05080a;
             --accent: #00f3ff;
-            --accent-glow: rgba(0, 243, 255, 0.3);
-            --text: #ffffff;
-            --text-dim: #b0b0b0;
-            --glass: rgba(20, 25, 35, 0.8);
-            --font-tech: 'Share Tech Mono', monospace;
-            --font-sans: 'Inter', sans-serif;
+            --accent-soft: rgba(0, 243, 255, 0.15);
+            --glass: rgba(255, 255, 255, 0.03);
+            --text-main: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.6);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,113 +25,136 @@
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--font-sans);
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 10% 80%, rgba(100, 50, 255, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
+        /* --- NAVEGACIÓN ESTILO FLOATING --- */
         header {
-            position: fixed; top: 0; width: 100%;
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1100px;
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
-            background: rgba(3, 5, 8, 0.9);
-            padding: 20px 5%;
-            border-bottom: 1px solid var(--accent-glow);
-            z-index: 1000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
         }
 
-        .logo { font-family: var(--font-tech); font-size: 1.4rem; letter-spacing: 2px; }
-        .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+        .logo { font-weight: 800; letter-spacing: -1px; font-size: 1.2rem; }
+        .logo span { color: var(--accent); }
 
-        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav ul { display: flex; list-style: none; gap: 20px; }
         nav a { 
             text-decoration: none; color: var(--text-dim); 
-            font-family: var(--font-tech); font-size: 0.8rem; 
-            text-transform: uppercase; transition: 0.3s;
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; transition: 0.3s;
         }
-        nav a:hover { color: var(--accent); text-shadow: 0 0 8px var(--accent); }
+        nav a:hover { color: var(--accent); }
 
-        /* --- HERO --- */
+        /* --- HERO: DISPOSICIÓN ASIMÉTRICA --- */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            padding: 0 10%; gap: 50px; margin-top: 50px;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            padding: 0 10%;
+            max-width: 1400px; margin: 0 auto;
         }
 
-        .hero-content { flex: 1.5; }
-        .status { font-family: var(--font-tech); color: var(--accent); margin-bottom: 15px; }
-        
-        h1 { font-family: var(--font-tech); font-size: 4rem; line-height: 1; margin-bottom: 10px; }
-        .sub { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 25px; font-family: var(--font-tech); }
-        .welcome { max-width: 550px; margin-bottom: 35px; color: #ddd; }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-status { 
+            font-family: var(--font-code); color: var(--accent); 
+            font-size: 0.8rem; margin-bottom: 10px; opacity: 0.8;
+        }
 
-        .btn-group { display: flex; gap: 20px; }
+        h1 { 
+            font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; 
+            line-height: 0.9; margin-bottom: 20px; letter-spacing: -2px;
+        }
+
+        .hero-sub { 
+            font-size: 1.2rem; color: var(--text-dim); margin-bottom: 30px; 
+            max-width: 500px; font-weight: 300;
+        }
+
+        /* Botones Rediseñados */
+        .btn-group { display: flex; gap: 15px; }
         .btn {
-            text-decoration: none; padding: 12px 25px; border-radius: 4px;
-            font-family: var(--font-tech); font-weight: bold; transition: 0.3s;
-            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; padding: 16px 32px; border-radius: 12px;
+            font-weight: 700; font-size: 0.9rem; transition: 0.4s;
+            display: flex; align-items: center; gap: 12px;
         }
-        .primary { background: var(--accent); color: var(--bg); box-shadow: 0 0 15px var(--accent-glow); }
-        .primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px var(--accent); }
-        .secondary { border: 1px solid var(--accent); color: var(--accent); }
-        .secondary:hover { background: var(--accent-glow); }
-
-        .hero-visual { flex: 1; display: flex; justify-content: center; }
-        .orb {
-            width: 300px; height: 300px; border-radius: 50%; padding: 5px;
-            background: linear-gradient(45deg, var(--accent), transparent);
-            box-shadow: 0 0 40px var(--accent-glow);
+        .primary { 
+            background: var(--accent); color: #000; 
+            box-shadow: 0 10px 20px var(--accent-soft);
         }
-        .orb img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .primary:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--accent-soft); }
 
-        /* --- SECCIONES --- */
+        .secondary { 
+            background: var(--glass); color: #fff; 
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* Orb Visual Moderno */
+        .hero-visual { position: relative; }
+        .visual-container {
+            width: 100%; aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--accent-soft), transparent);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morph 8s ease-in-out infinite;
+            overflow: hidden;
+            border: 1px solid var(--accent-soft);
+        }
+        .visual-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* --- SECCIONES BENTO --- */
         section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
-        h2 { font-family: var(--font-tech); color: var(--accent); margin-bottom: 40px; font-size: 1.8rem; }
-
-        .card { 
-            background: var(--glass); padding: 35px; border-radius: 12px; 
-            border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid var(--accent);
+        .section-tag { font-family: var(--font-code); color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
-        /* --- PROYECTOS --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .p-card { 
-            background: var(--glass); border-radius: 12px; overflow: hidden; 
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 24px;
+            transition: 0.4s;
         }
-        .p-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .p-img { height: 180px; width: 100%; object-fit: cover; }
-        .p-body { padding: 25px; }
-        .p-body h3 { font-family: var(--font-tech); margin-bottom: 10px; }
-        .p-meta { color: var(--accent); font-family: var(--font-tech); font-size: 0.8rem; margin-bottom: 15px; }
-        .p-link { 
-            display: block; text-align: center; text-decoration: none; 
-            color: var(--accent); border: 1px solid var(--accent); 
-            padding: 8px; border-radius: 4px; font-family: var(--font-tech);
-        }
-        .p-link:hover { background: var(--accent); color: var(--bg); }
+        .card:hover { background: rgba(255,255,255,0.06); border-color: var(--accent); }
 
-        /* --- ARSENAL --- */
-        .a-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-        .a-item { 
-            background: rgba(255,255,255,0.03); padding: 15px 25px; border-radius: 8px;
-            display: flex; align-items: center; gap: 10px; font-family: var(--font-tech);
-        }
-        .a-item i { color: var(--accent); }
+        .wide { grid-column: span 2; }
 
         /* --- FOOTER --- */
-        footer { text-align: center; padding: 60px 10%; border-top: 1px solid var(--accent-glow); }
-        .social { display: flex; justify-content: center; gap: 25px; margin: 25px 0; }
+        footer { padding: 80px 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .social { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
         .social a { color: var(--text-dim); font-size: 1.5rem; transition: 0.3s; }
         .social a:hover { color: var(--accent); transform: scale(1.2); }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
-            header { flex-direction: column; gap: 15px; }
-            .hero { flex-direction: column-reverse; text-align: center; height: auto; padding-top: 120px; }
-            h1 { font-size: 2.5rem; }
-            .orb { width: 200px; height: 200px; }
-            .btn-group { justify-content: center; flex-direction: column; }
+            .hero { grid-template-columns: 1fr; padding-top: 150px; text-align: center; }
+            .hero-content { order: 2; }
+            .hero-visual { order: 1; width: 250px; margin: 0 auto 50px; }
+            .btn-group { justify-content: center; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .wide { grid-column: span 1; }
         }
     </style>
 </head>
@@ -143,9 +165,8 @@
         <nav>
             <ul>
                 <li><a href="#hero">Inicio</a></li>
-                <li><a href="#sobre-mi">Usuario</a></li>
-                <li><a href="#proyectos">Misiones</a></li>
-                <li><a href="#herramientas">Arsenal</a></li>
+                <li><a href="#sobre-mi">Bio</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#contacto">Enlace</a></li>
             </ul>
         </nav>
@@ -154,84 +175,56 @@
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <p class="status">> ESTADO: CONECTADO</p>
-                <h1>Emiliano Aguilar</h1>
-                <p class="sub">[Ingeniero en Tecnologías de Cómputo y Telecomunicaciones]</p>
-                <p class="welcome">Bienvenido al nodo. Aquí convergen la lógica del código, la infraestructura de redes y la curiosidad científica.</p>
+                <p class="hero-status">// NODE_ACTIVE: EMILIANO_AGUILAR</p>
+                <h1>Logic &<br><span style="color: var(--accent)">Curiosity.</span></h1>
+                <p class="hero-sub">Ingeniero enfocado en la arquitectura de redes, código limpio y la divulgación científica para +300K mentes curiosas.</p>
                 
                 <div class="btn-group">
-                    <a href="extra files/cv.pdf" download class="btn primary">
-                        <i class="fas fa-download"></i> DESCARGAR DATA (CV)
-                    </a>
-                    <a href="#contacto" class="btn secondary">
-                        <i class="fas fa-satellite-dish"></i> ESTABLECER ENLACE
-                    </a>
+                    <a href="extra files/cv.pdf" download class="btn primary">Descargar CV</a>
+                    <a href="#contacto" class="btn secondary">Contacto</a>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="orb">
-                    <img src="images/perfil.jpeg" alt="Perfil">
+                <div class="visual-container">
+                    <img src="images/perfil.jpeg" alt="Emiliano Aguilar">
                 </div>
             </div>
         </section>
 
         <section id="sobre-mi">
-            <h2>> /root/Sobre_Mi.txt</h2>
-            <div class="card">
-                <p>Soy un <strong>Estudiante de Ingeniería</strong> apasionado por la arquitectura invisible que sostiene nuestro mundo digital. Mi especialidad es la intersección entre el <strong>Software</strong> y el <strong>Hardware/Redes</strong>.</p>
-                <br>
-                <p>Como divulgador, he creado una comunidad de <strong>+300K mentes curiosas</strong>, compartiendo la idea de que entender la tecnología es entender el futuro.</p>
+            <span class="section-tag">01. Perfil_Usuario</span>
+            <div class="card wide">
+                <p style="font-size: 1.2rem;">Apasionado por la arquitectura invisible que sostiene nuestro mundo digital. Mi especialidad es la intersección entre el <strong>Software</strong> y la <strong>Infraestructura de Redes</strong>.</p>
             </div>
         </section>
 
         <section id="proyectos">
-            <h2>> Ejecutando Proyectos...</h2>
-            <div class="grid">
-                <div class="p-card">
-                    <img src="images/cms.jpeg" class="p-img">
-                    <div class="p-body">
-                        <h3>Análisis de Muón (CERN)</h3>
-                        <p class="p-meta">Python + ROOT</p>
-                        <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 20px;">Reconstrucción de masa invariante utilizando bases de datos reales del CMS.</p>
-                        <a href="https://colab.research.google.com/drive/1OVwEsXx-r4NP-IgMIRVGNl2yb4NwHDlD?usp=sharing" target="_blank" class="p-link">Ver Código</a>
-                    </div>
+            <span class="section-tag">02. Misiones_Ejecutadas</span>
+            <div class="bento-grid">
+                <div class="card wide">
+                    <h3 style="color: var(--accent); margin-bottom: 15px;">Análisis de Muón (CERN)</h3>
+                    <p style="color: var(--text-dim); margin-bottom: 20px;">Reconstrucción de masa invariante utilizando bases de datos reales del CMS. Visualización de física de partículas.</p>
+                    <a href="https://colab.research.google.com/drive/1OVwEsXx-r4NP-IgMIRVGNl2yb4NwHDlD?usp=sharing" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: bold;">Explorar Código →</a>
                 </div>
-                <div class="p-card">
-                    <img src="images/logogithub.jpg" class="p-img">
-                    <div class="p-body">
-                        <h3>Repositorio Central</h3>
-                        <p class="p-meta">Acceso: Público</p>
-                        <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 20px;">Acceso directo a todos los proyectos, scripts y configuraciones de red.</p>
-                        <a href="https://github.com/Fastreaa" target="_blank" class="p-link">git pull origin</a>
-                    </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 10px;">GitHub</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-dim);">Repositorio central de misiones y configuraciones.</p>
+                    <br>
+                    <a href="https://github.com/Fastreaa" target="_blank" style="color: var(--accent); text-decoration: none;">Ver Perfil</a>
                 </div>
-            </div>
-        </section>
-
-        <section id="herramientas">
-            <h2>> System_Status: Arsenal</h2>
-            <div class="a-grid">
-                <div class="a-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-                <div class="a-item"><i class="fab fa-python"></i><span>Python</span></div>
-                <div class="a-item"><i class="fab fa-java"></i><span>Java</span></div>
-                <div class="a-item"><i class="fas fa-server"></i><span>GNS3</span></div>
-                <div class="a-item"><i class="fab fa-docker"></i><span>Docker</span></div>
-                <div class="a-item"><i class="fas fa-database"></i><span>MongoDB</span></div>
-                <div class="a-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
-                <div class="a-item"><i class="fab fa-shopify"></i><span>Shopify</span></div>
             </div>
         </section>
     </main>
 
     <footer id="contacto">
-        <p style="color: var(--accent); font-family: var(--font-tech);">> FIN DE TRANSMISIÓN</p>
+        <p class="section-tag">// FIN DE TRANSMISIÓN</p>
         <div class="social">
             <a href="mailto:foboseaa@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/Fastreaa" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/Fastreaa"><i class="fab fa-github"></i></a>
             <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287"><i class="fab fa-linkedin-in"></i></a>
             <a href="https://www.instagram.com/emilianoagl"><i class="fab fa-instagram"></i></a>
         </div>
-        <p style="font-size: 0.7rem; color: #555;">&copy; 2026 EA_SYSTEM // DIGITAL ARCHITECT</p>
+        <p style="margin-top: 40px; font-size: 0.7rem; color: rgba(255,255,255,0.2); letter-spacing: 2px;">© 2026 EA_SYSTEM</p>
     </footer>
 
 </body>
