@@ -3,555 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emiliano Aguilar | Portafolio Interactivo</title>
+    <title>Emiliano Aguilar | Portafolio</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- CONFIGURACIÓN BASE (RESET & THEME) --- */
-        :root {
-            --bg-color: #050505; /* Negro profundo */
-            --terminal-green: #00ff41; /* Verde clásico hacker */
-            --cyber-blue: #00f3ff; /* Azul futurista */
-            --text-main: #e0e0e0;
-            --font-tech: 'Share Tech Mono', monospace;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-tech);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* --- PANTALLA DE ARRANQUE (BOOT SEQUENCE) --- */
-        #boot-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .terminal-text {
-            color: var(--terminal-green);
-            font-size: 1.2rem;
-            max-width: 600px;
-            width: 100%;
-            text-align: left;
-            white-space: pre-wrap;
-            border-right: 2px solid var(--terminal-green);
-            animation: blink 0.75s step-end infinite;
-            margin-bottom: 20px;
-        }
-
-        /* Disclaimer de seguridad */
-        .safe-mode-label {
-            color: #666;
-            font-size: 0.85rem;
-            margin-top: 40px;
-            border: 1px solid #333;
-            padding: 5px 15px;
-            border-radius: 20px;
-            animation: fadeIn 2s ease-in;
-        }
-
-        #start-btn {
-            margin-top: 20px;
-            padding: 15px 40px;
-            background: transparent;
-            border: 2px solid var(--terminal-green);
-            color: var(--terminal-green);
-            font-family: var(--font-tech);
-            font-size: 1.5rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
-        }
-
-        #start-btn:hover {
-            background: var(--terminal-green);
-            color: #000;
-            box-shadow: 0 0 20px var(--terminal-green);
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* --- INTERFAZ PRINCIPAL (MAIN UI) --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(5, 5, 5, 0.9);
-            border-bottom: 1px solid var(--cyber-blue);
-            padding: 15px 0;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-        }
-
-        .nav-menu ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-menu a {
-            color: var(--cyber-blue);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #fff;
-            text-shadow: 0 0 8px var(--cyber-blue);
-        }
-
-        section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            border-left: 1px dashed rgba(0, 243, 255, 0.2);
-        }
-
-        h1, h2, h3 {
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        h2 {
-            color: var(--cyber-blue);
-            border-bottom: 2px solid var(--cyber-blue);
-            display: inline-block;
-            margin-bottom: 30px;
-            padding-bottom: 5px;
-        }
-
-        /* Hero Section */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: left;
-            position: relative;
-        }
-
-        .hero-content-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-
-        .hero-text-content h1 {
-            font-size: 3.5rem;
-            margin: 10px 0;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        .greeting {
-            color: var(--terminal-green);
-            font-size: 1.2rem;
-        }
-
-        .title {
-            color: #aaa;
-            margin-bottom: 20px;
-        }
-
-        .profile-pic-container img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            border: 3px solid var(--cyber-blue);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-            object-fit: cover;
-            filter: grayscale(40%) contrast(1.2);
-        }
-
-        /* Botones Tech */
-        .btn-tech {
-            display: inline-block;
-            padding: 10px 25px;
-            margin-right: 15px;
-            border: 1px solid var(--cyber-blue);
-            color: var(--cyber-blue);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: 0.3s;
-            background: rgba(0, 243, 255, 0.05);
-        }
-
-        .btn-tech:hover {
-            background: var(--cyber-blue);
-            color: #000;
-            box-shadow: 0 0 15px var(--cyber-blue);
-        }
-
-        /* Proyectos: Estilo Tarjeta de Datos */
-        .proyectos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .proyecto-card {
-            background: #0f0f0f;
-            border: 1px solid #333;
-            padding: 20px;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .proyecto-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--terminal-green);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s;
-        }
-
-        .proyecto-card:hover {
-            border-color: var(--terminal-green);
-            transform: translateY(-5px);
-        }
-
-        .proyecto-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .proyecto-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: 0.3s;
-            margin-bottom: 15px;
-        }
-
-        .proyecto-card:hover img {
-            filter: grayscale(0%);
-        }
-
-        /* Habilidades Grid */
-        .herramientas-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .tool-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
-            border: 1px solid #333;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
-        .tool-item:hover {
-            border-color: var(--terminal-green);
-            background: rgba(0, 255, 65, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .tool-item i {
-            color: var(--cyber-blue);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 50px;
-            background: #000;
-            border-top: 1px solid #333;
-        }
-
-        .social-links a {
-            color: #fff;
-            margin: 0 15px;
-            font-size: 1.5rem;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--terminal-green);
-            text-shadow: 0 0 10px var(--terminal-green);
-        }
-
-        /* Animación Cursor */
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-
-        /* Responsive Mobile */
-        @media (max-width: 768px) {
-            .hero-content-wrapper {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            .nav-menu ul {
-                flex-direction: column;
-                background: #000;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                display: none;
-                padding: 20px;
-                border-bottom: 1px solid var(--cyber-blue);
-            }
-            .nav-menu.nav-open ul {
-                display: flex;
-            }
-            #menu-toggle {
-                display: block;
-                background: none;
-                border: none;
-                color: var(--cyber-blue);
-                font-size: 2rem;
-                position: absolute;
-                right: 20px;
-                top: 15px;
-                cursor: pointer;
-            }
-            .herramientas-grid {
-                justify-content: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="boot-overlay">
-        <div id="terminal-output" class="terminal-text"></div>
-        
-        <div class="safe-mode-label">
-            <i class="fas fa-shield-alt"></i> Entorno Seguro Verificado: Portafolio Interactivo
-        </div>
+    <div class="stars-container"></div>
 
-        <button id="start-btn">> INGRESAR AL PORTAFOLIO</button>
-    </div>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">EA<span>.ENGINE</span></div>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#tools">Arsenal</a></li>
+                <li><a href="#proyectos">Misiones</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div id="main-interface" class="hidden">
-        
-        <header class="header">
-            <button id="menu-toggle" aria-label="Abrir Menú" style="display:none;"><i class="fas fa-bars"></i></button>
-
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#hero">:: Inicio ::</a></li>
-                    <li><a href="#sobre-mi">/ Datos_Usuario</a></li>
-                    <li><a href="#proyectos">/ Misiones</a></li>
-                    <li><a href="#herramientas">/ Arsenal</a></li>
-                    <li><a href="#contacto">/ Enlace</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <main>
-            
-            <section id="hero">
-                <div class="hero-content-wrapper">
-                    <div class="hero-text-content">
-                        <p class="greeting">> ESTADO: CONECTADO</p>
-                        <h1>Emiliano Aguilar</h1>
-                        <p class="title">[Ingeniero en Tecnologías de Cómputo y Telecomunicaciones]</p>
-                        
-                        <p style="margin-bottom: 20px; max-width: 600px; color: #ccc;">
-                            Bienvenido al nodo. Aquí convergen la lógica del código, la infraestructura de redes y la curiosidad científica.
-                        </p>
-
-                        <div class="hero-buttons">
-                            <a href="extra files/cv.pdf" download class="btn-tech">
-                                <i class="fas fa-download"></i> Descargar Data (CV)
-                            </a>
-                            <a href="#contacto" class="btn-tech">
-                                <i class="fas fa-satellite-dish"></i> Establecer Enlace
-                            </a>
-                        </div>
-                    </div>
-                    <div class="profile-pic-container">
-                        <img src="images/perfil.jpeg" alt="Foto de Perfil"> 
-                    </div>
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <span class="badge">Ingeniería · Física · Divulgación</span>
+                <h1>EMILIANO <span class="gradient-text">AGUILAR</span></h1>
+                <p class="description">
+                    Ingeniero en Tecnologías de Cómputo y Telecomunicaciones. 
+                    Especializado en la arquitectura del mundo digital y la divulgación científica para <b>+300K seguidores</b>.
+                </p>
+                <div class="hero-actions">
+                    <a href="#proyectos" class="btn-primary">Explorar Misiones</a>
+                    <a href="extra files/cv.pdf" download class="btn-secondary">Descargar Data (CV)</a>
                 </div>
-            </section>
-
-            <section id="sobre-mi" class="section">
-                <h2>> /root/Sobre_Mi.txt</h2>
-                <div style="background: rgba(255,255,255,0.02); padding: 20px; border-left: 3px solid var(--terminal-green);">
-                    <p style="margin-bottom: 15px;">
-                        <span style="color:var(--terminal-green);">root@emiliano:~$</span> cat descripcion.txt
-                    </p>
-                    <p>Soy un **Estudiante de Ingeniería** apasionado por la arquitectura invisible que sostiene nuestro mundo digital. Mi especialidad es la intersección entre el <strong>Software</strong> (la lógica) y el <strong>Hardware/Redes</strong> (la infraestructura).</p>
-                    <br>
-                    <p>Más allá del código, busco respuestas en la ciencia y la filosofía. Como divulgador, he creado una comunidad de <strong>+300K mentes curiosas</strong>, compartiendo la idea de que entender la tecnología es entender el futuro.</p>
-                </div>
-            </section>
-            
-            <section id="proyectos" class="section proyectos-grid">
-                <h2>> Ejecutando Proyectos...</h2>
-                
-                <div class="proyecto-card">
-                    <img src="images/cms.jpeg" alt="Detector CMS"> 
-                    <h3>Análisis de Muón (CERN)</h3>
-                    <p style="font-size: 0.9rem; color: #aaa;">Protocolo: Python + ROOT</p>
-                    <p style="margin-top: 10px;">Reconstrucción de masa invariante utilizando bases de datos reales del CMS. Visualización de física de partículas de alto nivel.</p>
-                    <div style="margin-top: 15px;">
-                        <a href="https://colab.research.google.com/drive/1OVwEsXx-r4NP-IgMIRVGNl2yb4NwHDlD?usp=sharing" target="_blank" class="btn-tech" style="font-size: 0.8rem;">
-                            Ver Código <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="proyecto-card">
-                    <img src="images/logogithub.jpg" alt="GitHub"> 
-                    <h3>Repositorio Central</h3>
-                    <p style="font-size: 0.9rem; color: #aaa;">Acceso: Público</p>
-                    <p style="margin-top: 10px;">Acceso directo a todos los proyectos, scripts de automatización, configuraciones de red y desarrollos web.</p>
-                    <div style="margin-top: 15px;">
-                        <a href="https://github.com/Fastreaa" target="_blank" class="btn-tech" style="font-size: 0.8rem;">git pull origin</a>
-                    </div>
-                </div>
-            </section>
-          
-            <section id="herramientas" class="section">
-                <h2>> System_Status: Habilidades</h2>
-                <div class="herramientas-grid">
-                    <div class="tool-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-                    <div class="tool-item"><i class="fas fa-database"></i><span>MySQL</span></div>
-                    <div class="tool-item"><i class="fas fa-database"></i><span>MongoDB</span></div>
-                    <div class="tool-item"><i class="fab fa-docker"></i><span>Docker</span></div>
-                    <div class="tool-item"><i class="fas fa-code"></i><span>C</span></div>
-                    <div class="tool-item"><i class="fab fa-java"></i><span>Java</span></div>
-                    <div class="tool-item"><i class="fab fa-python"></i><span>Python</span></div>
-                    <div class="tool-item"><i class="fab fa-html5"></i><span>HTML</span></div>
-                    <div class="tool-item"><i class="fas fa-chart-bar"></i><span>ROOT CERN</span></div>
-                    <div class="tool-item"><i class="fas fa-network-wired"></i><span>Wireshark</span></div>
-                    <div class="tool-item"><i class="fas fa-server"></i><span>GNS3</span></div>
-                    <div class="tool-item"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
-                </div>
-            </section>
-
-        </main>
-
-        <footer id="contacto" class="footer">
-            <p style="color: var(--cyber-blue); margin-bottom: 20px;">> FIN DE TRANSMISIÓN. ¿RESPONDER?</p>
-            <div class="social-links">
-                <a href="mailto:foboseaa@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://github.com/Fastreaa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/emiliano-aguilar-04a858287" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.instagram.com/emilianoagl?igsh=MTBuM2NqNDNuZHZiaA%3D%3D&utm_source=qr" target="_blank" title="Instagram Personal"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/share/17n9pHAmy9/?mibextid=wwXIfr" target="_blank" title="Divulgación Facebook"><i class="fab fa-facebook-f"></i></a>
             </div>
-            <p style="margin-top: 30px; font-size: 0.8rem; color: #555;">
-                &copy; 2025 Sistema Emiliano Aguilar. Versión 2.0
-            </p>
-        </footer>
-    </div>
+            <div class="hero-visual">
+                <div class="profile-orb">
+                    <img src="images/perfil.jpeg" alt="Emiliano Aguilar">
+                </div>
+            </div>
+        </section>
 
-    <script>
-        // TEXTO ACTUALIZADO (Menos agresivo, más claro)
-        const terminalText = [
-            "Iniciando Portafolio Interactivo v2.0...",
-            "Verificando entorno seguro... OK.",
-            "Cargando perfil de Ingeniería: Emiliano Aguilar",
-            "Estableciendo conexión con GitHub...",
-            "Acceso Concedido. Bienvenido."
-        ];
+        <section id="tools" class="tools-section">
+            <h2 class="section-title">Arsenal Tecnológico</h2>
+            <div class="tools-container glass">
+                <div class="tool-group">
+                    <h4>Data Science & Lab</h4>
+                    <div class="tool-icons">
+                        <div class="tool-item" title="Pandas"><i class="fab fa-python"></i><span>Pandas</span></div>
+                        <div class="tool-item" title="Jupyter"><i class="fas fa-book-open"></i><span>Jupyter</span></div>
+                        <div class="tool-item" title="NumPy"><i class="fas fa-microchip"></i><span>NumPy</span></div>
+                    </div>
+                </div>
+                <div class="tool-group">
+                    <h4>Web & E-commerce</h4>
+                    <div class="tool-icons">
+                        <div class="tool-item" title="JavaScript"><i class="fab fa-js"></i><span>JS</span></div>
+                        <div class="tool-item" title="Shopify"><i class="fab fa-shopify"></i><span>Shopify</span></div>
+                        <div class="tool-item" title="HTML5"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                    </div>
+                </div>
+                <div class="tool-group">
+                    <h4>Infraestructura</h4>
+                    <div class="tool-icons">
+                        <div class="tool-item" title="GNS3"><i class="fas fa-server"></i><span>GNS3</span></div>
+                        <div class="tool-item" title="Cisco"><i class="fas fa-network-wired"></i><span>Cisco</span></div>
+                        <div class="tool-item" title="Linux"><i class="fab fa-linux"></i><span>Linux</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        const speed = 40; 
-        let lineIndex = 0;
-        let charIndex = 0;
-        const outputDiv = document.getElementById('terminal-output');
-        const startBtn = document.getElementById('start-btn');
-        const overlay = document.getElementById('boot-overlay');
-        const mainInterface = document.getElementById('main-interface');
+        <section id="proyectos" class="proyectos-section">
+            <h2 class="section-title">Misiones Ejecutadas</h2>
+            <div class="bento-grid">
+                <div class="bento-item glass tall">
+                    <div class="bento-header">
+                        <i class="fab fa-shopify"></i>
+                        <span class="tag">E-commerce</span>
+                    </div>
+                    <h3>Shopify Solutions</h3>
+                    <p>Diseño y despliegue de tiendas optimizadas para alta conversión y escalabilidad.</p>
+                </div>
 
-        function typeWriter() {
-            if (lineIndex < terminalText.length) {
-                if (charIndex < terminalText[lineIndex].length) {
-                    if (charIndex === 0 && lineIndex > 0) {
-                        outputDiv.innerHTML += "<br>"; 
-                    }
-                    outputDiv.innerHTML += terminalText[lineIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, speed);
-                } else {
-                    lineIndex++;
-                    charIndex = 0;
-                    setTimeout(typeWriter, 300); 
-                }
-            } else {
-                startBtn.style.opacity = '1';
-            }
-        }
+                <div class="bento-item glass wide">
+                    <div class="bento-header">
+                        <i class="fas fa-atom"></i>
+                        <span class="tag">Ciencia de Datos</span>
+                    </div>
+                    <h3>Análisis Muon (CERN)</h3>
+                    <p>Procesamiento de datos del CMS utilizando Python para reconstrucción de partículas.</p>
+                </div>
 
-        window.onload = typeWriter;
+                <div class="bento-item glass">
+                    <div class="bento-header">
+                        <i class="fab fa-java"></i>
+                        <span class="tag">Backend</span>
+                    </div>
+                    <h3>Core Java/NoSQL</h3>
+                    <p>Sistemas de gamificación masiva con persistencia en MongoDB.</p>
+                </div>
 
-        startBtn.addEventListener('click', () => {
-            overlay.style.transition = 'opacity 0.8s ease';
-            overlay.style.opacity = '0';
-            
-            setTimeout(() => {
-                overlay.style.display = 'none';
-                mainInterface.classList.remove('hidden');
-                mainInterface.style.animation = 'fadeIn 1s forwards';
-            }, 800);
-        });
+                <div class="bento-item glass">
+                    <div class="bento-header">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="tag">Redes</span>
+                    </div>
+                    <h3>GNS3 Lab Topology</h3>
+                    <p>Configuración de servicios RIPv2 y automatización con Docker.</p>
+                </div>
 
-        const menuBtn = document.getElementById('menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        if(menuBtn){
-            menuBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('nav-open');
-                if(navMenu.classList.contains('nav-open')){
-                    navMenu.querySelector('ul').style.display = 'flex';
-                } else {
-                    navMenu.querySelector('ul').style.display = 'none';
-                }
-            });
-        }
-    </script>
+                <div class="bento-item glass">
+                    <div class="bento-header">
+                        <i class="fas fa-brain"></i>
+                        <span class="tag">Productividad</span>
+                    </div>
+                    <h3>Notion Neuro-Habit</h3>
+                    <p>Sistema lógico automatizado para trackeo de hábitos y XP.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="footer-content glass">
+            <p>> Fin de transmisión · 2026</p>
+            <div class="social-icons">
+                <a href="mailto:tuemail@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
