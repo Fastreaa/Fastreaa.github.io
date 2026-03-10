@@ -1,537 +1,116 @@
-/* ---------------------------------------------------- */
-/* 🎨 ESTILO FINAL: CENTRADO HERO + PROYECTOS INTERACTIVOS + DARK MODE */
-/* ---------------------------------------------------- */
 :root {
-    --color-principal: #007bff; /* Azul vibrante (botones) */
-    --color-secundario: #343a40; /* Texto principal oscuro */
-    --color-fondo: #f8f9fa; /* Fondo muy claro */
-    --color-tarjeta: #ffffff; /* Fondo de tarjetas */
-    --color-borde: #dee2e6; /* Borde sutil */
-    --color-texto-claro: #6c757d; /* Gris para textos secundarios */
-    
-    /* Tipografías modernas y amigables de Google Fonts */
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Poppins', sans-serif;
+    --bg-deep: #05070a;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent: #00d4ff;
+    --accent-glow: rgba(0, 212, 255, 0.3);
+    --text-high: #ffffff;
+    --text-low: #a0a0a0;
 }
 
-/* RESET BÁSICO */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: var(--font-body);
-    background-color: var(--color-fondo);
-    color: var(--color-secundario);
-    line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s; /* Transición para modo oscuro */
+    background-color: var(--bg-deep);
+    color: var(--text-high);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
-/* 1. ENCABEZADO (HEADER) */
-.header {
+.stars-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% 50%, #0a1018 0%, #030508 100%);
+    z-index: -1;
+}
+
+/* NAVEGACIÓN */
+header {
+    padding: 20px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0; z-index: 100;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 8%; 
-    background-color: var(--color-tarjeta);
-    border-bottom: 1px solid var(--color-borde);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    position: sticky; 
-    top: 0;
-    z-index: 1000;
-    transition: background-color 0.3s;
-}
-
-.logo {
-    font-family: var(--font-heading);
-    font-size: 1.8em;
-    font-weight: 700;
-    color: var(--color-secundario);
-    text-decoration: none;
-}
-
-/* BOTÓN DE HAMBURGUESA - Oculto en Desktop */
-#menu-toggle {
-    display: none; 
-}
-#theme-toggle {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: var(--color-secundario);
-    font-size: 1.4em;
-    transition: color 0.3s;
-    margin-left: 20px;
-}
-
-.nav-menu ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.nav-menu ul li {
-    margin-left: 30px; 
-}
-
-.nav-menu ul li a {
-    text-decoration: none;
-    color: var(--color-secundario);
-    font-weight: 500;
-    padding: 5px 0;
-    transition: color 0.3s;
-}
-
-.nav-menu ul li a:hover {
-    color: var(--color-principal);
-}
-
-/* 2. SECCIÓN HERO (PRINCIPAL) - ESTILO CENTRADO */
-#hero {
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    min-height: 80vh; 
-    padding: 80px 8% 40px;
-    position: relative;
-    border-bottom: 1px solid var(--color-borde); 
-}
-
-.hero-content-wrapper {
-    display: flex;
-    align-items: center; 
-    gap: 80px; 
-    max-width: 1100px;
-    width: 100%;
-}
-
-.hero-text-content {
-    flex: 1; 
-    text-align: left; 
-}
-
-.greeting {
-    font-size: 1.2em;
-    color: var(--color-texto-claro);
-    margin-bottom: 5px;
-    font-weight: 400;
-}
-
-#hero h1 {
-    font-family: var(--font-heading);
-    font-size: 3.8em; 
-    font-weight: 900;
-    color: var(--color-secundario);
-    margin-bottom: 8px;
-    line-height: 1.1;
-}
-
-#hero p.title {
-    font-size: 1.6em;
-    color: var(--color-texto-claro);
-    font-weight: 300;
-    margin-bottom: 30px;
-}
-
-.inline-social-icons {
-    margin-bottom: 25px;
-    display: flex;
-    gap: 15px;
-}
-.inline-social-icons a {
-    color: var(--color-texto-claro);
-    font-size: 1.5em;
-    transition: color 0.3s;
-}
-.inline-social-icons a:hover {
-    color: var(--color-principal);
-}
-
-/* Botones en Hero */
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-}
-.hero-buttons a {
-    text-decoration: none;
-    padding: 12px 28px;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s;
-    font-size: 1em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.btn-primary {
-    background-color: var(--color-principal);
-    color: var(--color-tarjeta);
-    border: 2px solid var(--color-principal);
-}
-.btn-secondary {
-    background-color: transparent;
-    color: var(--color-principal);
-    border: 2px solid var(--color-principal);
-}
-.btn-secondary:hover {
-    background-color: var(--color-principal);
-    color: var(--color-tarjeta);
-}
-
-/* Contenedor de la foto de perfil */
-.profile-pic-container {
-    width: 250px; 
-    height: 250px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 0 0 5px var(--color-tarjeta), 0 0 0 8px var(--color-principal);
-    flex-shrink: 0;
-}
-.profile-pic-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* 3. SECCIONES GENERALES INFERIORES */
-main {
-    padding: 20px 8%; 
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.section {
-    padding: 60px 0;
-    margin-bottom: 30px;
-    border-bottom: 1px solid var(--color-borde);
-}
-.section:last-of-type {
-    border-bottom: none;
-}
+.logo { font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; list-style: none; gap: 30px; }
+.nav-links a { text-decoration: none; color: var(--text-low); font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
 
-h2 {
-    font-family: var(--font-heading);
-    font-size: 2.2em;
-    color: var(--color-secundario);
-    text-align: center;
-    margin-bottom: 50px;
-    font-weight: 700;
-}
-h2 + p {
-    color: var(--color-texto-claro);
-    text-align: center;
-    margin-top: -40px; 
-    margin-bottom: 50px;
-}
-
-/* 4. PROYECTOS - ESTILOS RESTAURADOS Y AMIGABLES */
-.proyectos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-
-.proyecto-card {
-    background-color: var(--color-tarjeta);
-    padding: 25px;
-    border-radius: 8px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: 1px solid var(--color-borde);
-    text-align: center; 
-}
-
-.proyecto-card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.proyecto-card img {
-    width: 100%;
-    height: 200px; 
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    border: 1px solid var(--color-borde);
-}
-
-.proyecto-card h3 {
-    font-family: var(--font-body); 
-    color: var(--color-principal);
-    margin-bottom: 10px;
-    font-size: 1.4em;
-    font-weight: 600;
-}
-
-.proyecto-card p {
-    font-size: 0.95em;
-    color: var(--color-secundario);
-    margin-bottom: 20px;
-}
-
-.proyecto-card .links a {
-    display: inline-flex; 
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
     align-items: center;
-    padding: 8px 15px;
-    margin: 0 5px;
-    background-color: var(--color-principal);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px; 
-    font-weight: 600;
-    transition: background-color 0.3s, transform 0.2s;
-    gap: 8px;
+    padding: 0 10%;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 50px;
 }
 
-.proyecto-card .links a:hover {
-    background-color: #005691;
-    transform: scale(1.03);
-}
+.hero-content { flex: 1; }
+.badge { background: var(--glass); border: 1px solid var(--glass-border); padding: 6px 15px; border-radius: 20px; font-size: 0.7rem; color: var(--accent); letter-spacing: 1px; }
+h1 { font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin: 25px 0; }
+.gradient-text { background: linear-gradient(90deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.description { color: var(--text-low); font-size: 1.1rem; margin-bottom: 35px; max-width: 500px; }
 
-/* 5. SECCIÓN DE HERRAMIENTAS - ESTILOS RESTAURADOS */
-.herramientas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
-    text-align: center;
-    max-width: 1000px;
-    margin: 50px auto 0;
-}
+.hero-actions { display: flex; gap: 15px; }
+.btn-primary { background: var(--accent); color: #000; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: bold; box-shadow: 0 0 25px var(--accent-glow); transition: 0.4s; }
+.btn-secondary { border: 1px solid var(--glass-border); color: #fff; padding: 15px 30px; border-radius: 12px; text-decoration: none; transition: 0.4s; }
+.btn-secondary:hover { background: var(--glass); }
 
-.tool-item {
-    background-color: var(--color-tarjeta);
-    color: var(--color-secundario);
-    padding: 20px 10px;
-    border-radius: 10px;
-    font-weight: 600;
-    border: 1px solid var(--color-borde);
-    transition: all 0.3s;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.profile-orb {
+    width: 380px; height: 380px;
+    border-radius: 50%; padding: 8px;
+    background: linear-gradient(45deg, var(--accent), transparent);
+    box-shadow: 0 0 60px var(--accent-glow);
 }
+.profile-orb img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-.tool-item:hover {
-    transform: translateY(-5px); 
-    border-color: var(--color-principal);
-    color: var(--color-principal);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
+/* ARSENAL TOOLS */
+.tools-section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
+.tools-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; padding: 40px; border-radius: 30px; }
+.tool-group h4 { color: var(--accent); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px; }
+.tool-icons { display: flex; gap: 20px; flex-wrap: wrap; }
+.tool-item { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; text-align: center; width: 85px; transition: 0.3s; }
+.tool-item i { font-size: 1.5rem; margin-bottom: 8px; display: block; }
+.tool-item span { font-size: 0.6rem; color: var(--text-low); }
+.tool-item:hover { background: var(--glass); transform: translateY(-5px); border: 1px solid var(--accent); }
 
-.tool-item i {
-    font-size: 2.5em; 
-    display: block;
-    margin-bottom: 10px;
-}
-.tool-item span {
-    font-family: var(--font-body);
-    font-size: 0.9em;
-}
+/* BENTO GRID */
+.proyectos-section { padding: 80px 10%; max-width: 1200px; margin: 0 auto; }
+.section-title { font-size: 2rem; margin-bottom: 40px; }
+.bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 240px; gap: 20px; }
+.bento-item { background: var(--glass); border: 1px solid var(--glass-border); padding: 30px; border-radius: 24px; display: flex; flex-direction: column; justify-content: flex-end; transition: 0.4s; }
+.bento-item:hover { border-color: var(--accent); background: rgba(255,255,255,0.08); transform: scale(1.02); }
+.tall { grid-row: span 2; }
+.wide { grid-column: span 2; }
+.bento-header { margin-bottom: auto; display: flex; justify-content: space-between; font-size: 1.4rem; color: var(--accent); }
+.tag { font-size: 0.6rem; color: var(--text-low); text-transform: uppercase; }
 
-/* 6. PIE DE PÁGINA (FOOTER) */
-.footer {
-    background-color: var(--color-secundario);
-    color: white;
-    text-align: center;
-    padding: 40px 0;
-    margin-top: 60px;
-}
+/* FOOTER */
+footer { padding: 50px 10%; text-align: center; }
+.footer-content { padding: 40px; border-radius: 24px; }
+.social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 25px; }
+.social-icons a { color: var(--text-high); font-size: 1.5rem; transition: 0.3s; }
+.social-icons a:hover { color: var(--accent); transform: scale(1.2); }
 
-/* ---------------------------------------------------- */
-/* 🌙 ESTILOS DE MODO OSCURO (DARK MODE) */
-/* ---------------------------------------------------- */
-
-.dark-mode {
-    --color-principal: #66ccff; 
-    --color-secundario: #f8f9fa; 
-    --color-fondo: #121212; 
-    --color-tarjeta: #1e1e1e; 
-    --color-borde: #333333; 
-    --color-texto-claro: #aaaaaa; 
-}
-
-/* Aplicación de estilos en Dark Mode */
-.dark-mode {
-    background-color: var(--color-fondo);
-    color: var(--color-secundario);
-}
-.dark-mode .header, .dark-mode .proyecto-card, .dark-mode .tool-item {
-    background-color: var(--color-tarjeta);
-    border-color: var(--color-borde);
-}
-.dark-mode .logo, .dark-mode h1, .dark-mode h2, .dark-mode h3, 
-.dark-mode .nav-menu ul li a, .dark-mode .greeting, .dark-mode .title, .dark-mode p {
-    color: var(--color-secundario);
-}
-.dark-mode .hero-text-content p.title {
-    color: var(--color-texto-claro);
-}
-
-/* Botones y Hover en Dark Mode */
-.dark-mode .btn-secondary {
-    color: var(--color-principal);
-    border-color: var(--color-principal);
-}
-.dark-mode .btn-secondary:hover {
-    background-color: var(--color-principal);
-    color: #121212; 
-}
-.dark-mode .proyecto-card .links a {
-    background-color: var(--color-principal);
-    color: #121212;
-}
-
-/* Footer Dark Mode */
-.dark-mode .footer {
-    background-color: var(--color-tarjeta);
-    color: var(--color-secundario);
-}
-.dark-mode .footer .social-links a {
-    color: var(--color-secundario);
-}
-.dark-mode .footer .social-links a:hover {
-    color: var(--color-principal);
-}
-
-/* ---------------------------------------------------- */
-/* 📱 AJUSTES MÓVILES Y TABLET */
-/* ---------------------------------------------------- */
 @media (max-width: 992px) {
-    /* Header */
-    .header {
-        padding: 15px 5%; /* Ajustar padding del header */
-    }
-
-    /* Mostrar el botón de hamburguesa en móvil */
-    #menu-toggle {
-        display: inline-block;
-        font-size: 1.8em;
-    }
-    
-    /* Menú de navegación móvil */
-    .nav-menu {
-        display: none; /* Ocultar por defecto en móvil */
-        position: absolute;
-        top: 100%; 
-        left: 0;
-        width: 100%;
-        background-color: var(--color-tarjeta);
-        border-top: 1px solid var(--color-borde);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 999;
-    }
-    .nav-menu.nav-open {
-        display: block; /* Mostrar cuando la clase 'nav-open' está activa */
-    }
-    .nav-menu ul {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 0;
-    }
-    .nav-menu ul li {
-        width: 100%;
-        margin-left: 0;
-    }
-    .nav-menu ul li a, 
-    .nav-menu ul li button {
-        display: block;
-        width: 100%;
-        padding: 15px 5%; /* Padding ajustado para enlaces de menú móvil */
-        text-align: left;
-        border-bottom: 1px solid var(--color-borde);
-        font-size: 1.1em;
-    }
-    .nav-menu ul li:last-child a,
-    .nav-menu ul li:last-child button {
-        border-bottom: none;
-    }
-    #theme-toggle { /* Asegurar que el botón de tema no tenga margen izquierdo extra en móvil */
-        margin-left: 0;
-    }
-
-    /* Sección HERO - Ajustes para que la foto y los botones se vean bien */
-    #hero {
-        padding-top: 50px; /* Reducir padding superior del hero */
-        min-height: auto; /* Permitir que el contenido defina la altura */
-    }
-    .hero-content-wrapper { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 40px; /* Aumentar espacio entre elementos en móvil */
-    }
-    .hero-text-content { 
-        order: 2; 
-        max-width: 100%; /* Asegurar que ocupe todo el ancho disponible */
-    }
-    .profile-pic-container { 
-        order: 1; 
-        width: 160px; /* Tamaño más pequeño para la foto de perfil */
-        height: 160px;
-        box-shadow: 0 0 0 4px var(--color-tarjeta), 0 0 0 7px var(--color-principal); /* Borde más pequeño */
-    }
-    #hero h1 {
-        font-size: 2.8em; /* Tamaño de fuente ajustado para el título principal */
-    }
-    #hero p.title {
-        font-size: 1.3em; /* Tamaño de fuente ajustado para el subtítulo */
-    }
-    .inline-social-icons {
-        justify-content: center; /* Centrar íconos sociales */
-    }
-    .hero-buttons { 
-        flex-direction: column; 
-        align-items: center;
-        width: 100%; /* Asegurar que los botones ocupen todo el ancho */
-    }
-    .hero-buttons a {
-        width: 80%; /* Hacer los botones un poco más estrechos que el 100% para estética */
-        max-width: 250px; /* Limitar el ancho máximo de los botones */
-        justify-content: center; /* Centrar el texto y el ícono dentro del botón */
-        padding: 10px 20px; /* Reducir padding de los botones */
-        font-size: 0.95em; /* Tamaño de fuente ligeramente menor */
-    }
-
-    /* Sección de Herramientas - Mostrar en dos columnas y centrado */
-    .herramientas-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Autoajuste de columnas más flexibles */
-        justify-content: center; /* Centrar los elementos del grid si no llenan todo el ancho */
-        max-width: 600px; /* Limitar el ancho máximo del grid en móvil para que no se estire demasiado */
-        margin: 50px auto 0; /* Centrar el contenedor del grid */
-    }
-    .tool-item {
-        padding: 15px 8px; /* Reducir padding de los items */
-        font-size: 0.9em; /* Ajustar tamaño de fuente */
-    }
-    .tool-item i {
-        font-size: 2em; /* Reducir tamaño de íconos */
-    }
-
-    /* Proyectos - Ajustes si es necesario para pantallas muy pequeñas */
-    .proyectos-grid {
-        grid-template-columns: 1fr; /* Una sola columna para proyectos en móviles muy pequeños */
-    }
-}
-
-@media (max-width: 576px) { /* Para pantallas aún más pequeñas */
-    .hero-content-wrapper {
-        gap: 30px;
-    }
-    #hero h1 {
-        font-size: 2.2em;
-    }
-    #hero p.title {
-        font-size: 1.1em;
-    }
-    .profile-pic-container {
-        width: 140px;
-        height: 140px;
-        box-shadow: 0 0 0 3px var(--color-tarjeta), 0 0 0 6px var(--color-principal);
-    }
-    .hero-buttons a {
-        width: 90%; /* Los botones ocupan un poco más de ancho */
-    }
-    .herramientas-grid {
-        grid-template-columns: repeat(2, 1fr); /* Forzar 2 columnas en pantallas muy pequeñas */
-        max-width: 350px; /* Ancho máximo para el grid de herramientas */
-    }
+    .hero { flex-direction: column-reverse; text-align: center; height: auto; padding-top: 150px; }
+    h1 { font-size: 3rem; }
+    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .wide, .tall { grid-column: span 1; grid-row: span 1; }
+    .profile-orb { width: 280px; height: 280px; }
 }
